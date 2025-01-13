@@ -2,7 +2,15 @@ package com.example.refactoring2.ch01;
 
 public class Statement {
 
-    public String statement(Invoice invoice, Plays plays) throws Exception {
+    private final Invoice invoice;
+    private final Plays plays;
+
+    public Statement(Invoice invoice, Plays plays) {
+        this.invoice = invoice;
+        this.plays = plays;
+    }
+
+    public String statement() throws Exception {
         int totalAmount = 0;
         int volumeCredits = 0;
         StringBuilder result = new StringBuilder();
@@ -28,8 +36,8 @@ public class Statement {
         result.append(String.format("적립 포인트: %d점\n", volumeCredits));
         return result.toString();
     }
-
-    private static int amountFor(Performance performance, Play play) throws Exception {
+    
+    private int amountFor(Performance performance, Play play) throws Exception {
         int result;
         switch (play.getType()) {
             case TRAGEDY :
