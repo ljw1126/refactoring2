@@ -70,10 +70,10 @@ public class Statement {
     }
 
     private int totalVolumeCredits() {
-        int volumeCredits = 0;
+        int result = 0;
         for(Performance performances : invoice.getPerformances()) {
-            volumeCredits += volumeCreditsFor(performances);
+            result += volumeCreditsFor(performances);
         }
-        return volumeCredits;
+        return result;
     }
 }
