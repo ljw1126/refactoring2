@@ -17,18 +17,17 @@ public class Statement {
         result.append(String.format("청구 내역 (고객명: %s)", invoice.getCustomer())).append("\n");
 
         for(Performance performances : invoice.getPerformances()) {
-            Play play = playFor(performances);
-            int thisAmount = amountFor(performances, play);
+            int thisAmount = amountFor(performances, playFor(performances));
 
             // 포인트를 적립한다
             volumeCredits += Math.max(performances.getAudience() - 30, 0);
 
             // 희극 관객 5명마다 추가 포인트를 제공한다
-            if(play.getType().equals(PlayType.COMEDY)) {
+            if(playFor(performances).getType().equals(PlayType.COMEDY)) {
                 volumeCredits += (performances.getAudience() / 5);
             }
 
-            result.append(String.format("%s: $%d %d석\n", play.getName(), thisAmount / 100, performances.getAudience()));
+            result.append(String.format("%s: $%d %d석\n", playFor(performances).getName(), thisAmount / 100, performances.getAudience()));
             totalAmount += thisAmount;
         }
 
