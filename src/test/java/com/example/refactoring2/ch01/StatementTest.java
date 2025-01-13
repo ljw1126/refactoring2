@@ -13,8 +13,6 @@ class StatementTest {
 
     @Test
     void statement() throws Exception {
-        Statement statement = new Statement();
-
         List<Performance> performances = new ArrayList<>();
         performances.add(new Performance("hamlet", 55));
         performances.add(new Performance("as-like", 35));
@@ -34,7 +32,8 @@ class StatementTest {
                 "총액: $1730\n" +
                 "적립 포인트: 47점\n";
 
-        String actual = statement.statement(invoice, plays);
+        Statement statement = new Statement(invoice, plays);
+        String actual = statement.statement();
 
         assertThat(actual).isEqualTo(expected);
     }
