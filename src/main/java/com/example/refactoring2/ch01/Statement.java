@@ -29,14 +29,14 @@ public class Statement {
     }
 
     private int volumeCreditsFor(Performance performances) {
-        int volumeCredits = 0;
-        volumeCredits += Math.max(performances.getAudience() - 30, 0);
-        
+        int result = 0;
+        result += Math.max(performances.getAudience() - 30, 0);
+
         if(playFor(performances).getType().equals(PlayType.COMEDY)) {
-            volumeCredits += (performances.getAudience() / 5);
+            result += (performances.getAudience() / 5);
         }
 
-        return volumeCredits;
+        return result;
     }
 
     private Play playFor(Performance performances) {
