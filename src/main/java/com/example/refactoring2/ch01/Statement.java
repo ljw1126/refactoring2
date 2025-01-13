@@ -12,15 +12,17 @@ public class Statement {
 
     public String statement() throws Exception {
         int totalAmount = 0;
-        int volumeCredits = 0;
         StringBuilder result = new StringBuilder();
         result.append(String.format("청구 내역 (고객명: %s)", invoice.getCustomer())).append("\n");
 
         for(Performance performances : invoice.getPerformances()) {
-            volumeCredits += volumeCreditsFor(performances);
-
             result.append(String.format("%s: $%d %d석\n", playFor(performances).getName(), amountFor(performances) / 100, performances.getAudience()));
             totalAmount += amountFor(performances);
+        }
+
+        int volumeCredits = 0;
+        for(Performance performances : invoice.getPerformances()) {
+            volumeCredits += volumeCreditsFor(performances);
         }
 
         result.append(String.format("총액: $%d\n", totalAmount / 100));
