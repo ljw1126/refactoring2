@@ -42,7 +42,7 @@ public class Statement {
 
     private int amountFor(Performance performance, Play play) throws Exception {
         int result;
-        switch (play.getType()) {
+        switch (playFor(performance).getType()) {
             case TRAGEDY :
                 result = 40_000;
                 if(performance.getAudience() > 30) {
@@ -57,7 +57,7 @@ public class Statement {
                 result += 300 * performance.getAudience();
                 break;
             default :
-                throw new Exception(String.format("알 수 없는 장르: %s", play.getType()));
+                throw new Exception(String.format("알 수 없는 장르: %s", playFor(performance).getType()));
         }
 
         return result;
