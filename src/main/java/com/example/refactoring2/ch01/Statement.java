@@ -17,7 +17,7 @@ public class Statement {
         result.append(String.format("청구 내역 (고객명: %s)", invoice.getCustomer())).append("\n");
 
         for(Performance performances : invoice.getPerformances()) {
-            int thisAmount = amountFor(performances, playFor(performances));
+            int thisAmount = amountFor(performances);
 
             // 포인트를 적립한다
             volumeCredits += Math.max(performances.getAudience() - 30, 0);
@@ -40,7 +40,7 @@ public class Statement {
         return plays.get(performances.getPlayId());
     }
 
-    private int amountFor(Performance performance, Play play) throws Exception {
+    private int amountFor(Performance performance) throws Exception {
         int result;
         switch (playFor(performance).getType()) {
             case TRAGEDY :
