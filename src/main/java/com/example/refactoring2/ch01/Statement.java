@@ -17,7 +17,7 @@ public class Statement {
         result.append(String.format("청구 내역 (고객명: %s)", invoice.getCustomer())).append("\n");
 
         for(Performance performances : invoice.getPerformances()) {
-            Play play = plays.get(performances.getPlayId());
+            Play play = playFor(performances);
             int thisAmount = amountFor(performances, play);
 
             // 포인트를 적립한다
@@ -36,7 +36,11 @@ public class Statement {
         result.append(String.format("적립 포인트: %d점\n", volumeCredits));
         return result.toString();
     }
-    
+
+    private Play playFor(Performance performances) {
+        return plays.get(performances.getPlayId());
+    }
+
     private int amountFor(Performance performance, Play play) throws Exception {
         int result;
         switch (play.getType()) {
