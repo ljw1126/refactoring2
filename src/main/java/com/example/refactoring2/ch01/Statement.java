@@ -18,9 +18,7 @@ public class Statement {
             result.append(String.format("%s: $%d %d석\n", playFor(performances).getName(), amountFor(performances) / 100, performances.getAudience()));
         }
 
-        int totalAmount = appleSauce();
-
-        result.append(String.format("총액: $%d\n", totalAmount / 100));
+        result.append(String.format("총액: $%d\n", totalAmount() / 100));
         result.append(String.format("적립 포인트: %d점\n", totalVolumeCredits()));
         return result.toString();
     }
@@ -63,12 +61,12 @@ public class Statement {
         return result;
     }
 
-    private int appleSauce() throws Exception {
-        int totalAmount = 0;
+    private int totalAmount() throws Exception {
+        int result = 0;
         for(Performance performances : invoice.getPerformances()) {
-            totalAmount += amountFor(performances);
+            result += amountFor(performances);
         }
-        return totalAmount;
+        return result;
     }
 
     private int totalVolumeCredits() {
