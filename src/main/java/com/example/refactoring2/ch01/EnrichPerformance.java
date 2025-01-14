@@ -1,5 +1,7 @@
 package com.example.refactoring2.ch01;
 
+import com.example.refactoring2.ch01.calculator.PerformanceCalculator;
+
 public class EnrichPerformance {
     private final String playId;
     private final int audience;
@@ -18,45 +20,21 @@ public class EnrichPerformance {
     public static EnrichPerformance create(Performance performance, Plays plays) throws Exception {
         String playId = performance.getPlayId();
         int audience = performance.getAudience();
+
         Play play = plays.get(playId);
-        int amount = amountFor(performance, play);
-        int volumeCredits = volumeCreditsFor(performance, play);
+        PerformanceCalculator calculator = new PerformanceCalculator(performance, play);
+        int amount = calculator.amount();
+        int volumeCredits = calculator.volumeCredits();
 
         return new EnrichPerformance(playId, audience, play, amount, volumeCredits);
     }
 
     private static int volumeCreditsFor(Performance performance, Play play) {
-        int result = 0;
-        result += Math.max(performance.getAudience() - 30, 0);
-
-        if(play.getType().equals(PlayType.COMEDY)) {
-            result += (performance.getAudience() / 5);
-        }
-
-        return result;
+        return new PerformanceCalculator(performance, play).volumeCredits();
     }
 
     private static int amountFor(Performance performance, Play play) throws Exception {
-        int result;
-        switch (play.getType()) {
-            case TRAGEDY :
-                result = 40_000;
-                if(performance.getAudience() > 30) {
-                    result += 1_000 * (performance.getAudience() - 30);
-                }
-                break;
-            case COMEDY :
-                result = 30_000;
-                if(performance.getAudience() > 30) {
-                    result += 10_000 + 500 * (performance.getAudience() - 20);
-                }
-                result += 300 * performance.getAudience();
-                break;
-            default :
-                throw new Exception(String.format("알 수 없는 장르: %s", play.getType()));
-        }
-
-        return result;
+        return new PerformanceCalculator(performance, play).amount();
     }
 
     public String getPlayId() {
