@@ -32,8 +32,8 @@ class StatementTest {
                 "총액: $1730\n" +
                 "적립 포인트: 47점\n";
 
-        Statement statement = new Statement(invoice, plays);
-        String actual = statement.statement();
+        Statement statement = new Statement();
+        String actual = statement.statement(invoice, plays);
 
         assertThat(actual).isEqualTo(expected);
     }

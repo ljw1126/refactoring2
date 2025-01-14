@@ -2,15 +2,7 @@ package com.example.refactoring2.ch01;
 
 public class Statement {
 
-    private final Invoice invoice;
-    private final Plays plays;
-
-    public Statement(Invoice invoice, Plays plays) {
-        this.invoice = invoice;
-        this.plays = plays;
-    }
-
-    public String statement() throws Exception {
+    public String statement(Invoice invoice, Plays plays) throws Exception {
         return renderPlainText(StatementData.createStatementData(invoice, plays));
     }
 
