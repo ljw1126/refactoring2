@@ -7,7 +7,7 @@ public abstract class PerformanceCalculator {
     protected final Performance performance;
     protected final Play play;
 
-    public PerformanceCalculator(Performance performance, Play play) {
+    protected PerformanceCalculator(Performance performance, Play play) {
         this.performance = performance;
         this.play = play;
     }
