@@ -17,7 +17,7 @@ public class Statement {
         return renderPlainText(StatementData.createStatementData(invoice, plays));
     }
 
-    private String renderPlainText(StatementData data) throws Exception {
+    private String renderPlainText(StatementData data) {
         StringBuilder result = new StringBuilder();
         result.append(String.format("청구 내역 (고객명: %s)", data.getCustomer())).append("\n");
 
@@ -30,7 +30,7 @@ public class Statement {
         return result.toString();
     }
 
-    private int totalAmount(StatementData data) throws Exception {
+    private int totalAmount(StatementData data) {
         int result = 0;
         for(EnrichPerformance performances : data.getEnrichPerformances()) {
             result += performances.getAmount();
