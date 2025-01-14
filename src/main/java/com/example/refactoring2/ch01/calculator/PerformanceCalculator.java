@@ -2,52 +2,31 @@ package com.example.refactoring2.ch01.calculator;
 
 import com.example.refactoring2.ch01.Performance;
 import com.example.refactoring2.ch01.Play;
-import com.example.refactoring2.ch01.PlayType;
 
-public class PerformanceCalculator {
-    private final Performance performance;
-    private final Play play;
+public abstract class PerformanceCalculator {
+    protected final Performance performance;
+    protected final Play play;
 
     public PerformanceCalculator(Performance performance, Play play) {
         this.performance = performance;
         this.play = play;
     }
 
-    public int amount() throws Exception {
-        int result = 0;
-        switch (play.getType()) {
-            case TRAGEDY :
-                result = 40_000;
-                if(performance.getAudience() > 30) {
-                    result += 1_000 * (performance.getAudience() - 30);
-                }
-                break;
-            case COMEDY :
-                result = 30_000;
-                if(performance.getAudience() > 30) {
-                    result += 10_000 + 500 * (performance.getAudience() - 20);
-                }
-                result += 300 * performance.getAudience();
-                break;
-            default :
-                throw new Exception(String.format("알 수 없는 장르: %s", play.getType()));
-        }
-
-        return result;
+    public static PerformanceCalculator create(Performance performance, Play play) throws Exception {
+        return switch (play.getType()) {
+            case TRAGEDY -> new TragedyCalculator(performance, play);
+            case COMEDY -> new ComedyCalculator(performance, play);
+            default -> throw new Exception(String.format("알 수 없는 장르: %s", play.getType()));
+        };
     }
 
     public int volumeCredits() {
-        int result = 0;
-        result += Math.max(performance.getAudience() - 30, 0);
-
-        if(play.getType().equals(PlayType.COMEDY)) {
-            result += (performance.getAudience() / 5);
-        }
-
-        return result;
+        return Math.max(performance.getAudience() - 30, 0);
     }
 
     public Play getPlay() {
         return play;
     }
+
+    public abstract int amount();
 }

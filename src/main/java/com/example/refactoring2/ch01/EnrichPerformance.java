@@ -21,7 +21,7 @@ public class EnrichPerformance {
         String playId = performance.getPlayId();
         int audience = performance.getAudience();
 
-        PerformanceCalculator calculator = new PerformanceCalculator(performance, plays.get(playId));
+        PerformanceCalculator calculator = PerformanceCalculator.create(performance, plays.get(playId));
         int amount = calculator.amount();
         int volumeCredits = calculator.volumeCredits();
 
