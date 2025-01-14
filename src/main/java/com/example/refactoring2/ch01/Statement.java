@@ -14,13 +14,7 @@ public class Statement {
     }
 
     public String statement() throws Exception {
-        List<EnrichPerformance> enrichPerformances = new ArrayList<>();
-        for(Performance performance : invoice.getPerformances()) {
-            enrichPerformances.add(EnrichPerformance.create(performance, plays));
-        }
-
-        StatementData data = new StatementData(invoice.getCustomer(), enrichPerformances);
-        return renderPlainText(data);
+        return renderPlainText(StatementData.createStatementData(invoice, plays));
     }
 
     private String renderPlainText(StatementData data) throws Exception {
