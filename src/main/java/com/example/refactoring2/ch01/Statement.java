@@ -16,7 +16,7 @@ public class Statement {
     public String statement() throws Exception {
         List<EnrichPerformance> enrichPerformances = new ArrayList<>();
         for(Performance performance : invoice.getPerformances()) {
-            enrichPerformances.add(create(performance, plays));
+            enrichPerformances.add(EnrichPerformance.create(performance, plays));
         }
 
         StatementData data = new StatementData(invoice.getCustomer(), enrichPerformances);
