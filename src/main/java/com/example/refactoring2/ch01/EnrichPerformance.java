@@ -32,32 +32,12 @@ public class EnrichPerformance {
                 volumeCredits);
     }
 
-    private static int volumeCreditsFor(Performance performance, Play play) {
-        return new PerformanceCalculator(performance, play).volumeCredits();
-    }
-
-    private static int amountFor(Performance performance, Play play) throws Exception {
-        return new PerformanceCalculator(performance, play).amount();
-    }
-
-    public String getPlayId() {
-        return playId;
-    }
-
     public int getAudience() {
         return audience;
     }
 
-    public Play getPlay() {
-        return play;
-    }
-
     public String getPlayName() {
         return play.getName();
-    }
-
-    public PlayType getPlayType() {
-        return play.getType();
     }
 
     public int getAmount() {
