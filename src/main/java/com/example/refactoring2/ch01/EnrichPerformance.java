@@ -18,18 +18,13 @@ public class EnrichPerformance {
     }
 
     public static EnrichPerformance create(Performance performance, Plays plays) throws Exception {
-        String playId = performance.getPlayId();
-        int audience = performance.getAudience();
+        PerformanceCalculator calculator = PerformanceCalculator.create(performance, plays.get(performance.getPlayId()));
 
-        PerformanceCalculator calculator = PerformanceCalculator.create(performance, plays.get(playId));
-        int amount = calculator.amount();
-        int volumeCredits = calculator.volumeCredits();
-
-        return new EnrichPerformance(playId,
-                audience,
+        return new EnrichPerformance(performance.getPlayId(),
+                performance.getAudience(),
                 calculator.getPlay(),
-                amount,
-                volumeCredits);
+                calculator.amount(),
+                calculator.volumeCredits());
     }
 
     public int getAudience() {
