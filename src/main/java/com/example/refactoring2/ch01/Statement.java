@@ -3,7 +3,7 @@ package com.example.refactoring2.ch01;
 public class Statement {
 
     public String statement(Invoice invoice, Plays plays) throws Exception {
-        return renderPlainText(StatementData.createStatementData(invoice, plays));
+        return renderPlainText(StatementData.create(invoice, plays));
     }
 
     private String renderPlainText(StatementData data) {
@@ -20,7 +20,7 @@ public class Statement {
     }
 
     public String htmlStatement(Invoice invoice, Plays plays) throws Exception {
-        return renderHtml(StatementData.createStatementData(invoice, plays));
+        return renderHtml(StatementData.create(invoice, plays));
     }
 
     private String renderHtml(StatementData data) {
