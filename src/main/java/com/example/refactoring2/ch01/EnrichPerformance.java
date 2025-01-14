@@ -21,12 +21,15 @@ public class EnrichPerformance {
         String playId = performance.getPlayId();
         int audience = performance.getAudience();
 
-        Play play = plays.get(playId);
-        PerformanceCalculator calculator = new PerformanceCalculator(performance, play);
+        PerformanceCalculator calculator = new PerformanceCalculator(performance, plays.get(playId));
         int amount = calculator.amount();
         int volumeCredits = calculator.volumeCredits();
 
-        return new EnrichPerformance(playId, audience, play, amount, volumeCredits);
+        return new EnrichPerformance(playId,
+                audience,
+                calculator.getPlay(),
+                amount,
+                volumeCredits);
     }
 
     private static int volumeCreditsFor(Performance performance, Play play) {

@@ -46,4 +46,8 @@ public class PerformanceCalculator {
 
         return result;
     }
+
+    public Play getPlay() {
+        return play;
+    }
 }
