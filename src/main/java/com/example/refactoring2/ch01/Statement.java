@@ -18,7 +18,7 @@ public class Statement {
         for(Performance performance : invoice.getPerformances()) {
             enrichPerformances.add(create(performance, plays));
         }
-        
+
         StatementData data = new StatementData(invoice.getCustomer(), enrichPerformances);
         return renderPlainText(data);
     }
@@ -44,17 +44,6 @@ public class Statement {
         result.append(String.format("총액: $%d\n", totalAmount(data) / 100));
         result.append(String.format("적립 포인트: %d점\n", totalVolumeCredits(data)));
         return result.toString();
-    }
-
-    private int volumeCreditsFor(EnrichPerformance performance) {
-        int result = 0;
-        result += Math.max(performance.getAudience() - 30, 0);
-
-        if(performance.getPlayType().equals(PlayType.COMEDY)) {
-            result += (performance.getAudience() / 5);
-        }
-
-        return result;
     }
 
     private int volumeCreditsFor(Performance performance, Play play) {
