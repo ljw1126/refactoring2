@@ -12,11 +12,11 @@ public abstract class PerformanceCalculator {
         this.play = play;
     }
 
-    public static PerformanceCalculator create(Performance performance, Play play) throws Exception {
+    public static PerformanceCalculator create(Performance performance, Play play) {
         return switch (play.getType()) {
             case TRAGEDY -> new TragedyCalculator(performance, play);
             case COMEDY -> new ComedyCalculator(performance, play);
-            default -> throw new Exception(String.format("알 수 없는 장르: %s", play.getType()));
+            default -> throw new IllegalArgumentException(String.format("알 수 없는 장르: %s", play.getType()));
         };
     }
 

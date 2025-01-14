@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.*;
 class StatementTest {
 
     @Test
-    void statement() throws Exception {
+    void statement() {
         List<Performance> performances = new ArrayList<>();
         performances.add(new Performance("hamlet", 55));
         performances.add(new Performance("as-like", 35));
@@ -40,7 +40,7 @@ class StatementTest {
     }
 
     @Test
-    void htmlStatement() throws Exception {
+    void htmlStatement() {
         List<Performance> performances = new ArrayList<>();
         performances.add(new Performance("hamlet", 55));
         performances.add(new Performance("as-like", 35));

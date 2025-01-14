@@ -2,7 +2,7 @@ package com.example.refactoring2.ch01;
 
 public class Statement {
 
-    public String statement(Invoice invoice, Plays plays) throws Exception {
+    public String statement(Invoice invoice, Plays plays) {
         return renderPlainText(StatementData.create(invoice, plays));
     }
 
@@ -19,7 +19,7 @@ public class Statement {
         return result.toString();
     }
 
-    public String htmlStatement(Invoice invoice, Plays plays) throws Exception {
+    public String htmlStatement(Invoice invoice, Plays plays) {
         return renderHtml(StatementData.create(invoice, plays));
     }
 

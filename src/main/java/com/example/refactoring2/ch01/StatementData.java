@@ -16,7 +16,7 @@ public class StatementData {
         this.totalVolumeCredits = totalVolumeCredits();
     }
 
-    public static StatementData create(Invoice invoice, Plays plays) throws Exception {
+    public static StatementData create(Invoice invoice, Plays plays) {
         List<EnrichPerformance> enrichPerformances = new ArrayList<>();
         for(Performance performance : invoice.getPerformances()) {
             enrichPerformances.add(EnrichPerformance.create(performance, plays));

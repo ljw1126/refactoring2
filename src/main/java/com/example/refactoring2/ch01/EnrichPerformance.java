@@ -17,7 +17,7 @@ public class EnrichPerformance {
         this.volumeCredits = volumeCredits;
     }
 
-    public static EnrichPerformance create(Performance performance, Plays plays) throws Exception {
+    public static EnrichPerformance create(Performance performance, Plays plays) {
         PerformanceCalculator calculator = PerformanceCalculator.create(performance, plays.get(performance.getPlayId()));
 
         return new EnrichPerformance(performance.getPlayId(),
