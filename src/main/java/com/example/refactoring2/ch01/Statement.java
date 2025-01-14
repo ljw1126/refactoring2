@@ -1,5 +1,6 @@
 package com.example.refactoring2.ch01;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Statement {
@@ -13,15 +14,11 @@ public class Statement {
     }
 
     public String statement() throws Exception {
-        List<EnrichPerformance> enrichPerformances = invoice.getPerformances().stream()
-                .map(performance -> {
-                    try {
-                        return create(performance, plays);
-                    } catch (Exception e) {
-                        throw new RuntimeException(e);
-                    }
-                })
-                .toList();
+        List<EnrichPerformance> enrichPerformances = new ArrayList<>();
+        for(Performance performance : invoice.getPerformances()) {
+            enrichPerformances.add(create(performance, plays));
+        }
+        
         StatementData data = new StatementData(invoice.getCustomer(), enrichPerformances);
         return renderPlainText(data);
     }
@@ -31,7 +28,9 @@ public class Statement {
         int audience = performance.getAudience();
         Play play = plays.get(playId);
         int amount = amountFor(performance, play);
-        return new EnrichPerformance(playId, audience, play, amount);
+        int volumeCredits = volumeCreditsFor(performance, play);
+
+        return new EnrichPerformance(playId, audience, play, amount, volumeCredits);
     }
 
     private String renderPlainText(StatementData data) throws Exception {
@@ -52,6 +51,17 @@ public class Statement {
         result += Math.max(performance.getAudience() - 30, 0);
 
         if(performance.getPlayType().equals(PlayType.COMEDY)) {
+            result += (performance.getAudience() / 5);
+        }
+
+        return result;
+    }
+
+    private int volumeCreditsFor(Performance performance, Play play) {
+        int result = 0;
+        result += Math.max(performance.getAudience() - 30, 0);
+
+        if(play.getType().equals(PlayType.COMEDY)) {
             result += (performance.getAudience() / 5);
         }
 
@@ -92,7 +102,7 @@ public class Statement {
     private int totalVolumeCredits(StatementData data) {
         int result = 0;
         for(EnrichPerformance performances : data.getEnrichPerformances()) {
-            result += volumeCreditsFor(performances);
+            result += performances.getVolumeCredits();
         }
         return result;
     }

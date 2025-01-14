@@ -5,12 +5,14 @@ public class EnrichPerformance {
     private final int audience;
     private final Play play;
     private final int amount;
+    private final int volumeCredits;
 
-    public EnrichPerformance(String playId, int audience, Play play, int amount) {
+    public EnrichPerformance(String playId, int audience, Play play, int amount, int volumeCredits) {
         this.playId = playId;
         this.audience = audience;
         this.play = play;
         this.amount = amount;
+        this.volumeCredits = volumeCredits;
     }
 
     public String getPlayId() {
@@ -35,5 +37,9 @@ public class EnrichPerformance {
 
     public int getAmount() {
         return amount;
+    }
+
+    public int getVolumeCredits() {
+        return volumeCredits;
     }
 }
