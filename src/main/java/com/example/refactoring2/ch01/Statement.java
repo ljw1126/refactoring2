@@ -1,5 +1,7 @@
 package com.example.refactoring2.ch01;
 
+import java.util.List;
+
 public class Statement {
 
     private final Invoice invoice;
@@ -11,7 +13,10 @@ public class Statement {
     }
 
     public String statement() throws Exception {
-        StatementData data = new StatementData(invoice);
+        List<EnrichPerformance> enrichPerformances = invoice.getPerformances().stream()
+                .map(performance -> new EnrichPerformance(performance.getPlayId(), performance.getAudience(), playFor(performance.getPlayId())))
+                .toList();
+        StatementData data = new StatementData(invoice.getCustomer(), enrichPerformances);
         return renderPlainText(data);
     }
 
@@ -19,8 +24,8 @@ public class Statement {
         StringBuilder result = new StringBuilder();
         result.append(String.format("청구 내역 (고객명: %s)", data.getCustomer())).append("\n");
 
-        for(Performance performances : data.getPerformances()) {
-            result.append(String.format("%s: $%d %d석\n", playFor(performances).getName(), amountFor(performances) / 100, performances.getAudience()));
+        for(EnrichPerformance performances : data.getEnrichPerformances()) {
+            result.append(String.format("%s: $%d %d석\n", performances.getPlay().getName(), amountFor(performances) / 100, performances.getAudience()));
         }
 
         result.append(String.format("총액: $%d\n", totalAmount(data) / 100));
@@ -28,24 +33,28 @@ public class Statement {
         return result.toString();
     }
 
-    private int volumeCreditsFor(Performance performances) {
+    private int volumeCreditsFor(EnrichPerformance performance) {
         int result = 0;
-        result += Math.max(performances.getAudience() - 30, 0);
+        result += Math.max(performance.getAudience() - 30, 0);
 
-        if(playFor(performances).getType().equals(PlayType.COMEDY)) {
-            result += (performances.getAudience() / 5);
+        if(performance.getPlay().getType().equals(PlayType.COMEDY)) {
+            result += (performance.getAudience() / 5);
         }
 
         return result;
     }
 
-    private Play playFor(Performance performances) {
+    private Play playFor(EnrichPerformance performances) {
         return plays.get(performances.getPlayId());
     }
 
-    private int amountFor(Performance performance) throws Exception {
+    private Play playFor(String playId) {
+        return plays.get(playId);
+    }
+
+    private int amountFor(EnrichPerformance performance) throws Exception {
         int result;
-        switch (playFor(performance).getType()) {
+        switch (performance.getPlay().getType()) {
             case TRAGEDY :
                 result = 40_000;
                 if(performance.getAudience() > 30) {
@@ -60,7 +69,7 @@ public class Statement {
                 result += 300 * performance.getAudience();
                 break;
             default :
-                throw new Exception(String.format("알 수 없는 장르: %s", playFor(performance).getType()));
+                throw new Exception(String.format("알 수 없는 장르: %s", performance.getPlay().getType()));
         }
 
         return result;
@@ -68,7 +77,7 @@ public class Statement {
 
     private int totalAmount(StatementData data) throws Exception {
         int result = 0;
-        for(Performance performances : data.getPerformances()) {
+        for(EnrichPerformance performances : data.getEnrichPerformances()) {
             result += amountFor(performances);
         }
         return result;
@@ -76,7 +85,7 @@ public class Statement {
 
     private int totalVolumeCredits(StatementData data) {
         int result = 0;
-        for(Performance performances : data.getPerformances()) {
+        for(EnrichPerformance performances : data.getEnrichPerformances()) {
             result += volumeCreditsFor(performances);
         }
         return result;

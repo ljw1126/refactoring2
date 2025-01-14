@@ -1,25 +1,22 @@
 package com.example.refactoring2.ch01;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class StatementData {
     private final String customer;
-    private final List<Performance> performances;
+    private final List<EnrichPerformance> enrichPerformances;
 
-    public StatementData(Invoice invoice) {
-        this(invoice.getCustomer(), invoice.getPerformances());
-    }
-
-    public StatementData(String customer, List<Performance> performances) {
+    public StatementData(String customer, List<EnrichPerformance> enrichPerformances) {
         this.customer = customer;
-        this.performances = performances;
+        this.enrichPerformances = enrichPerformances;
     }
 
     public String getCustomer() {
         return customer;
     }
 
-    public List<Performance> getPerformances() {
-        return performances;
+    public List<EnrichPerformance> getEnrichPerformances() {
+        return enrichPerformances;
     }
 }
