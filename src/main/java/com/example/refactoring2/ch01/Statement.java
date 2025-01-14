@@ -89,29 +89,6 @@ public class Statement {
         return result;
     }
 
-    private int amountFor(EnrichPerformance performance) throws Exception {
-        int result;
-        switch (performance.getPlayType()) {
-            case TRAGEDY :
-                result = 40_000;
-                if(performance.getAudience() > 30) {
-                    result += 1_000 * (performance.getAudience() - 30);
-                }
-                break;
-            case COMEDY :
-                result = 30_000;
-                if(performance.getAudience() > 30) {
-                    result += 10_000 + 500 * (performance.getAudience() - 20);
-                }
-                result += 300 * performance.getAudience();
-                break;
-            default :
-                throw new Exception(String.format("알 수 없는 장르: %s", performance.getPlayType()));
-        }
-
-        return result;
-    }
-
     private int totalVolumeCredits(StatementData data) {
         int result = 0;
         for(EnrichPerformance performances : data.getEnrichPerformances()) {
