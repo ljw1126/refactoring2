@@ -15,34 +15,6 @@ public class EnrichPerformance {
         this.volumeCredits = volumeCredits;
     }
 
-    public String getPlayId() {
-        return playId;
-    }
-
-    public int getAudience() {
-        return audience;
-    }
-
-    public Play getPlay() {
-        return play;
-    }
-
-    public String getPlayName() {
-        return play.getName();
-    }
-
-    public PlayType getPlayType() {
-        return play.getType();
-    }
-
-    public int getAmount() {
-        return amount;
-    }
-
-    public int getVolumeCredits() {
-        return volumeCredits;
-    }
-
     public static EnrichPerformance create(Performance performance, Plays plays) throws Exception {
         String playId = performance.getPlayId();
         int audience = performance.getAudience();
@@ -85,5 +57,33 @@ public class EnrichPerformance {
         }
 
         return result;
+    }
+
+    public String getPlayId() {
+        return playId;
+    }
+
+    public int getAudience() {
+        return audience;
+    }
+
+    public Play getPlay() {
+        return play;
+    }
+
+    public String getPlayName() {
+        return play.getName();
+    }
+
+    public PlayType getPlayType() {
+        return play.getType();
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public int getVolumeCredits() {
+        return volumeCredits;
     }
 }
