@@ -11,19 +11,20 @@ public class Statement {
     }
 
     public String statement() throws Exception {
-        return renderPlainText();
+        StatementData data = new StatementData(invoice);
+        return renderPlainText(data);
     }
 
-    private String renderPlainText() throws Exception {
+    private String renderPlainText(StatementData data) throws Exception {
         StringBuilder result = new StringBuilder();
-        result.append(String.format("청구 내역 (고객명: %s)", invoice.getCustomer())).append("\n");
+        result.append(String.format("청구 내역 (고객명: %s)", data.getCustomer())).append("\n");
 
-        for(Performance performances : invoice.getPerformances()) {
+        for(Performance performances : data.getPerformances()) {
             result.append(String.format("%s: $%d %d석\n", playFor(performances).getName(), amountFor(performances) / 100, performances.getAudience()));
         }
 
-        result.append(String.format("총액: $%d\n", totalAmount() / 100));
-        result.append(String.format("적립 포인트: %d점\n", totalVolumeCredits()));
+        result.append(String.format("총액: $%d\n", totalAmount(data) / 100));
+        result.append(String.format("적립 포인트: %d점\n", totalVolumeCredits(data)));
         return result.toString();
     }
 
@@ -65,17 +66,17 @@ public class Statement {
         return result;
     }
 
-    private int totalAmount() throws Exception {
+    private int totalAmount(StatementData data) throws Exception {
         int result = 0;
-        for(Performance performances : invoice.getPerformances()) {
+        for(Performance performances : data.getPerformances()) {
             result += amountFor(performances);
         }
         return result;
     }
 
-    private int totalVolumeCredits() {
+    private int totalVolumeCredits(StatementData data) {
         int result = 0;
-        for(Performance performances : invoice.getPerformances()) {
+        for(Performance performances : data.getPerformances()) {
             result += volumeCreditsFor(performances);
         }
         return result;
