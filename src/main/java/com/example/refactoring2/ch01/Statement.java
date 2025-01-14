@@ -26,20 +26,4 @@ public class Statement {
         result.append(String.format("적립 포인트: %d점\n", data.getTotalVolumeCredits()));
         return result.toString();
     }
-
-    private int totalAmount(StatementData data) {
-        int result = 0;
-        for(EnrichPerformance performances : data.getEnrichPerformances()) {
-            result += performances.getAmount();
-        }
-        return result;
-    }
-
-    private int totalVolumeCredits(StatementData data) {
-        int result = 0;
-        for(EnrichPerformance performances : data.getEnrichPerformances()) {
-            result += performances.getVolumeCredits();
-        }
-        return result;
-    }
 }
