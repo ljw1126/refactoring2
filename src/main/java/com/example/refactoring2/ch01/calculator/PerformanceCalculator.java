@@ -13,15 +13,15 @@ public abstract class PerformanceCalculator {
     }
 
     public static PerformanceCalculator create(Performance performance, Play play) {
-        return switch (play.getType()) {
+        return switch (play.type()) {
             case TRAGEDY -> new TragedyCalculator(performance, play);
             case COMEDY -> new ComedyCalculator(performance, play);
-            default -> throw new IllegalArgumentException(String.format("알 수 없는 장르: %s", play.getType()));
+            default -> throw new IllegalArgumentException(String.format("알 수 없는 장르: %s", play.type()));
         };
     }
 
     public int volumeCredits() {
-        return Math.max(performance.getAudience() - 30, 0);
+        return Math.max(performance.audience() - 30, 0);
     }
 
     public Play getPlay() {

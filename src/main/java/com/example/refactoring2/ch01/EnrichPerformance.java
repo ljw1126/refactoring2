@@ -18,10 +18,10 @@ public class EnrichPerformance {
     }
 
     public static EnrichPerformance create(Performance performance, Plays plays) {
-        PerformanceCalculator calculator = PerformanceCalculator.create(performance, plays.get(performance.getPlayId()));
+        PerformanceCalculator calculator = PerformanceCalculator.create(performance, plays.get(performance.playId()));
 
-        return new EnrichPerformance(performance.getPlayId(),
-                performance.getAudience(),
+        return new EnrichPerformance(performance.playId(),
+                performance.audience(),
                 calculator.getPlay(),
                 calculator.amount(),
                 calculator.volumeCredits());
@@ -32,7 +32,7 @@ public class EnrichPerformance {
     }
 
     public String getPlayName() {
-        return play.getName();
+        return play.name();
     }
 
     public int getAmount() {

@@ -11,16 +11,16 @@ public class ComedyCalculator extends PerformanceCalculator{
     @Override
     public int amount() {
         int result = 30_000;
-        if(performance.getAudience() > 30) {
-            result += 10_000 + 500 * (performance.getAudience() - 20);
+        if(performance.audience() > 30) {
+            result += 10_000 + 500 * (performance.audience() - 20);
         }
-        result += 300 * performance.getAudience();
+        result += 300 * performance.audience();
 
         return result;
     }
 
     @Override
     public int volumeCredits() {
-        return super.volumeCredits() + (performance.getAudience() / 5);
+        return super.volumeCredits() + (performance.audience() / 5);
     }
 }

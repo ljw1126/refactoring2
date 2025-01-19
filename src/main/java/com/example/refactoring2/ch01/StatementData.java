@@ -18,11 +18,11 @@ public class StatementData {
 
     public static StatementData create(Invoice invoice, Plays plays) {
         List<EnrichPerformance> enrichPerformances = new ArrayList<>();
-        for(Performance performance : invoice.getPerformances()) {
+        for(Performance performance : invoice.performances()) {
             enrichPerformances.add(EnrichPerformance.create(performance, plays));
         }
 
-        return new StatementData(invoice.getCustomer(), enrichPerformances);
+        return new StatementData(invoice.customer(), enrichPerformances);
     }
 
     private int totalAmount() {
