@@ -1,5 +1,8 @@
 package com.example.refactoring2.ch04;
 
+import com.example.refactoring2.DataLoader;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -9,12 +12,14 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class ProvinceTest {
+    private final DataLoader dataLoader = new DataLoader(new ObjectMapper(), ProvinceTest.class.getClassLoader());
 
     private Province province;
 
     @BeforeEach
     void setUp() {
-        province = Province.from(createSampleProvinceData());
+        ProvinceData data = dataLoader.getResource("ch04/province.json", new TypeReference<>() {});
+        province = Province.from(data);
     }
 
     @Test
@@ -60,12 +65,4 @@ class ProvinceTest {
         assertThat(noProducers.profit()).isEqualTo(0);
     }
 
-    private static ProvinceData createSampleProvinceData() {
-        List<ProducerDto> producerDtos = new ArrayList<>();
-        producerDtos.add(new ProducerDto("Byzantium", 10, 9));
-        producerDtos.add(new ProducerDto("Attalia", 12, 10));
-        producerDtos.add(new ProducerDto("Sinope", 10, 6));
-
-        return new ProvinceData("Asia", producerDtos, 30, 20);
-    }
 }
