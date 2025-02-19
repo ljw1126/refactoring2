@@ -21,7 +21,7 @@ public class Province {
 
     public static Province from(ProvinceData doc) {
         Province province = new Province(doc.name(), new ArrayList<>(), 0, doc.demand(), doc.price());
-        for(ProducerDto producerDto: doc.produces()) {
+        for(ProducerDto producerDto: doc.producers()) {
             province.addProducer(new Producer(province, producerDto));
         }
         return province;
