@@ -19,21 +19,29 @@ public class Invoice {
     }
 
     public void printOwing() {
-        int outstanding = 0;
+        printBanner();
+        int outstanding = calculateOutstanding();
+        recordDueDate();
+        printDetails(outstanding);
+    }
 
+    private void printBanner() {
         System.out.println("************");
         System.out.println("****고객 채무***");
         System.out.println("************");
+    }
 
-        // 미해결 채무(outstanding)를 계산한다
-        for(Order o : this.orders) {
-            outstanding += o.amount;
-        }
+    private int calculateOutstanding() {
+        return this.orders.stream()
+                .mapToInt(Order::getAmount)
+                .sum();
+    }
 
-        // 마감일을 기록한다
+    private void recordDueDate() {
         this.dueDate = this.dueDate.plusDays(30);
+    }
 
-        // 세부사항을 출력한다
+    private void printDetails(int outstanding) {
         System.out.println("고객명: " + this.customer);
         System.out.println("채무액: " + outstanding);
         System.out.println("마감일: " + dueDate.toString());
