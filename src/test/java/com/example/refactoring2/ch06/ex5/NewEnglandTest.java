@@ -10,7 +10,7 @@ class NewEnglandTest {
     void inNewEngland() {
         Customer customer = new Customer(new Customer.Address(NewEngland.ME));
 
-        boolean actual = NewEngland.inNewEngland(customer);
+        boolean actual = NewEngland.inNewEngland(customer.getAddress().getState());
 
         assertThat(actual).isTrue();
     }
