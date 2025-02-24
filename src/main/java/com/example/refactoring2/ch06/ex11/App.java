@@ -21,19 +21,15 @@ public class App {
     }
 
     private static CommandLine parseCommandLine(String[] args) {
-        if(args.length == 0) throw new RuntimeException("파일명을 입력하세요");
-        CommandLine commandLine = new CommandLine();
-        commandLine.fileName = args[args.length - 1];
-        commandLine.onlyCountReady = Stream.of(args).anyMatch(arg -> "-r".equals(arg));
-        return commandLine;
+        return new CommandLine(args);
     }
 
     private static long countOrders(CommandLine commandLine) throws IOException {
-        File input = Paths.get(commandLine.fileName).toFile();
+        File input = Paths.get(commandLine.fileName()).toFile();
         ObjectMapper mapper = new ObjectMapper();
         Order[] orders = mapper.readValue(input, Order[].class);
 
-        if(commandLine.onlyCountReady) {
+        if(commandLine.onlyCountReady()) {
             return Stream.of(orders)
                     .filter(o -> "ready".equals(o.status()))
                     .count();
@@ -42,11 +38,22 @@ public class App {
         }
     }
 
-    private static class CommandLine {
-        public String fileName;
-        public boolean onlyCountReady;
+    public static class CommandLine {
+        private final String[] args;
 
-        public CommandLine() {
+        public CommandLine(String[] args) {
+            if(args.length == 0) {
+                throw new RuntimeException("파일명을 입력하세요");
+            }
+            this.args = args;
+        }
+
+        public String fileName() {
+            return this.args[this.args.length - 1];
+        }
+
+        public boolean onlyCountReady() {
+            return Stream.of(args).anyMatch(arg -> "-r".equals(arg));
         }
     }
 }
