@@ -20,11 +20,15 @@ class OrderTest {
     }
 
     private int priceOrder(Product product, int quantity, Shipping shipping) {
+        PriceData priceData = calculatePricingData(product, quantity);
+        return applyShipping(priceData, shipping);
+    }
+
+    private PriceData calculatePricingData(Product product, int quantity) {
         int basePrice = product.basePrice() * quantity;
         int discount = Math.max(quantity - product.discountThreshold(), 0)
                 * product.basePrice() * product.discountRate();
-        PriceData priceData = new PriceData(basePrice, quantity, discount);
-        return applyShipping(priceData, shipping);
+        return new PriceData(basePrice, quantity, discount);
     }
 
     private static int applyShipping(PriceData priceData, Shipping shipping) {
