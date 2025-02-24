@@ -18,4 +18,10 @@ public class Station {
     public List<Reading> getReadings() {
         return readings;
     }
+
+    public List<Reading> readingsOutsideRange(NumberRange range) {
+        return this.readings.stream()
+                .filter(reading -> reading.getTemp() < range.getMin() || reading.getTemp() > range.getMax())
+                .toList();
+    }
 }

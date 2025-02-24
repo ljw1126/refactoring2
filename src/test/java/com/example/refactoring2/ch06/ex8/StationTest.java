@@ -23,15 +23,10 @@ class StationTest {
         Station station = new Station("ZB1", readings);
         int temperatureFloor = 30;
         int temperatureCelling = 50;
+        NumberRange range = new NumberRange(temperatureFloor, temperatureCelling);
 
-        List<Reading> actual = readingsOutsideRange(station, temperatureFloor, temperatureCelling);
+        List<Reading> actual = station.readingsOutsideRange(range);
 
         assertThat(actual).hasSize(4);
-    }
-
-    private List<Reading> readingsOutsideRange(Station station, int min, int max) {
-        return station.getReadings().stream()
-                .filter(reading -> reading.getTemp() < min || reading.getTemp() > max)
-                .toList();
     }
 }
