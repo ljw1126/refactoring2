@@ -23,15 +23,38 @@ class OrderTest {
         int basePrice = product.basePrice() * quantity;
         int discount = Math.max(quantity - product.discountThreshold(), 0)
                 * product.basePrice() * product.discountRate();
-        int price = applyShipping(quantity, shipping, basePrice, discount);
-        return price;
+        PriceData priceData = new PriceData(basePrice, quantity, discount);
+        return applyShipping(priceData, shipping);
     }
 
-    private static int applyShipping(int quantity, Shipping shipping, int basePrice, int discount) {
-        int shippingPerCase = (basePrice > shipping.discountThreshold())
+    private static int applyShipping(PriceData priceData, Shipping shipping) {
+        int shippingPerCase = (priceData.getBasePrice() > shipping.discountThreshold())
                 ? shipping.discountedFee() : shipping.feePerCase();
-        int shippingCost = quantity * shippingPerCase;
-        int price = basePrice - discount + shippingCost;
-        return price;
+        int shippingCost = priceData.getQuantity() * shippingPerCase;
+        return priceData.getBasePrice() - priceData.getDiscount() + shippingCost;
+    }
+
+    static class PriceData {
+        private final int basePrice;
+        private final int quantity;
+        private final int discount;
+
+        public PriceData(int basePrice, int quantity, int discount) {
+            this.basePrice = basePrice;
+            this.quantity = quantity;
+            this.discount = discount;
+        }
+
+        public int getBasePrice() {
+            return basePrice;
+        }
+
+        public int getQuantity() {
+            return quantity;
+        }
+
+        public int getDiscount() {
+            return discount;
+        }
     }
 }
