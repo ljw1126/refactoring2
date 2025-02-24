@@ -23,6 +23,11 @@ class OrderTest {
         int basePrice = product.basePrice() * quantity;
         int discount = Math.max(quantity - product.discountThreshold(), 0)
                 * product.basePrice() * product.discountRate();
+        int price = applyShipping(quantity, shipping, basePrice, discount);
+        return price;
+    }
+
+    private static int applyShipping(int quantity, Shipping shipping, int basePrice, int discount) {
         int shippingPerCase = (basePrice > shipping.discountThreshold())
                 ? shipping.discountedFee() : shipping.feePerCase();
         int shippingCost = quantity * shippingPerCase;
