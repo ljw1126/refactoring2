@@ -16,7 +16,7 @@
 | 03 | 코드에서 나는 악취    | [바로가기](docs/ch03.md) |
 | 04 | 테스트 구축하기      | [바로가기](docs/ch04.md) |
 | 05 | 리팩터링 카탈로그 보는 법 | [바로가기](docs/ch05.md) |
-| 06 | 기본적인 리팩터링     | -                    |
+| 06 | 기본적인 리팩터링     | [바로가기](docs/ch06.md) |
 | 07 | 캡슐화           | -                    |
 | 08 | 기능 이동         | -                    |
 | 09 | 데이터 조직화       | -                    |
@@ -26,3 +26,4 @@
 
 ### Reference
 - [Catalog of Refactorings](https://refactoring.com/catalog/)
+- [한국어판 공식 저장소](https://github.com/WegraLee/Refactoring)
