@@ -59,6 +59,24 @@ class AppTest {
         assertThat(outContent.toString().trim()).isEqualTo("3");
     }
 
+    @Test
+    void runWithOption() throws IOException {
+        Path tempFile = createTempJsonFile(sampleJsonData);
+
+        long actual = App.run(new String[] {"-r", tempFile.toString()});
+
+        assertThat(actual).isEqualTo(2);
+    }
+
+    @Test
+    void runWithoutOption() throws IOException {
+        Path tempFile = createTempJsonFile(sampleJsonData);
+
+        long actual = App.run(new String[] {tempFile.toString()});
+
+        assertThat(actual).isEqualTo(3);
+    }
+
     private Path createTempJsonFile(String jsonContent) throws IOException {
         Path tempFile = Files.createTempFile("test-orders", ".json");
         Files.write(tempFile, jsonContent.getBytes());
