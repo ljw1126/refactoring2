@@ -26,4 +26,5 @@
 
 ### Reference
 - [Catalog of Refactorings](https://refactoring.com/catalog/)
-- [한국어판 공식 저장소](https://github.com/WegraLee/Refactoring)
+- [Github - 한국어판 공식 저장소](https://github.com/WegraLee/Refactoring)
+- [YouTube - 마틴파울러::리팩터링의 중요성](https://youtu.be/mNPpfB8JSIU?si=HCrMEgGrMhof2Ykj)
