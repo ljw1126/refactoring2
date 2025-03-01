@@ -8,7 +8,7 @@ class ShipmentTest {
 
     @Test
     void display() {
-        Shipment shipment = new Shipment(new TrackingInformation("대한통운", "9999"));
+        Shipment shipment = new Shipment("대한통운", "9999");
 
         assertThat(shipment.display())
                 .isEqualTo("대한통운: 9999");

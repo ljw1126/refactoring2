@@ -1,21 +1,23 @@
 package com.example.refactoring2.ch07.ex6;
 
 public class Shipment {
-    private TrackingInformation trackingInformation;
+    private String shippingCompany; // 배송 회사
+    private String trackingNumber; // 추적
 
-    public Shipment(TrackingInformation trackingInformation) {
-        this.trackingInformation = trackingInformation;
+    public Shipment(String shippingCompany, String trackingNumber) {
+        this.shippingCompany = shippingCompany;
+        this.trackingNumber = trackingNumber;
     }
 
     public String display() {
-        return trackingInformation.display();
+        return String.format("%s: %s", this.shippingCompany, this.trackingNumber);
     }
 
-    public TrackingInformation getTrackingInformation() {
-        return trackingInformation;
+    public void setShippingCompany(String arg) {
+        this.shippingCompany = arg;
     }
 
-    public void setTrackingInformation(TrackingInformation trackingInformation) {
-        this.trackingInformation = trackingInformation;
+    public void setTrackingNumber(String arg) {
+        this.trackingNumber = arg;
     }
 }
