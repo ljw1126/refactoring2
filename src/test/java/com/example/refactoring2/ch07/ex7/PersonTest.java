@@ -10,7 +10,7 @@ class PersonTest {
     void manager() {
         Person person = new Person("tester", new Person.Department("001", "toby"));
 
-        String manager = person.getDepartment().getManager();
+        String manager = person.manager();
 
         assertThat(manager).isEqualTo("toby");
     }

@@ -2,7 +2,7 @@ package com.example.refactoring2.ch07.ex7;
 
 public class Person {
     private final String name;
-    private Department department;
+    private final Department department;
 
     public Person(String name, Department department) {
         this.name = name;
@@ -13,12 +13,8 @@ public class Person {
         return name;
     }
 
-    public Department getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(Department department) {
-        this.department = department;
+    public String manager() {
+        return this.department.getManager();
     }
 
     public static class Department {
