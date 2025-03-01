@@ -9,9 +9,9 @@ class PersonTest {
 
     @Test
     void init() {
-        Person person = new Person("tester", "051", "123-4567");
+        Person person = new Person("tester", new TelephoneNumber("051", "123-4567"));
 
         assertThat(person)
-                .isEqualTo(new Person("tester", "051", "123-4567"));
+                .isEqualTo(new Person("tester", new TelephoneNumber("051", "123-4567")));
     }
 }

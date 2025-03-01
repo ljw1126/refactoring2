@@ -4,13 +4,11 @@ import java.util.Objects;
 
 public class Person {
     private String name;
-    private String officeAreaCode;
-    private String officeNumber;
+    private TelephoneNumber telephoneNumber;
 
-    public Person(String name, String officeAreaCode, String officeNumber) {
+    public Person(String name, TelephoneNumber telephoneNumber) {
         this.name = name;
-        this.officeAreaCode = officeAreaCode;
-        this.officeNumber = officeNumber;
+        this.telephoneNumber = telephoneNumber;
     }
 
     public String getName() {
@@ -21,20 +19,20 @@ public class Person {
         this.name = name;
     }
 
-    public String getOfficeAreaCode() {
-        return officeAreaCode;
+    public String getAreaCode() {
+        return telephoneNumber.getAreaCode();
     }
 
-    public void setOfficeAreaCode(String officeAreaCode) {
-        this.officeAreaCode = officeAreaCode;
+    public void setAreaCode(String officeAreaCode) {
+        telephoneNumber.setAreaCode(officeAreaCode);
     }
 
-    public String getOfficeNumber() {
-        return officeNumber;
+    public String getNumber() {
+        return telephoneNumber.getNumber();
     }
 
-    public void setOfficeNumber(String officeNumber) {
-        this.officeNumber = officeNumber;
+    public void setNumber(String officeNumber) {
+        telephoneNumber.setNumber(officeNumber);
     }
 
     @Override
@@ -42,11 +40,11 @@ public class Person {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Person person = (Person) o;
-        return Objects.equals(name, person.name) && Objects.equals(officeAreaCode, person.officeAreaCode) && Objects.equals(officeNumber, person.officeNumber);
+        return Objects.equals(name, person.name) && Objects.equals(telephoneNumber, person.telephoneNumber);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, officeAreaCode, officeNumber);
+        return Objects.hash(name, telephoneNumber);
     }
 }
