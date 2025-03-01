@@ -12,13 +12,12 @@ class OrderTest {
     @Test
     void test() {
         List<Order> orders = new ArrayList<>();
-        orders.add(new Order(new Priority("high")));
-        orders.add(new Order(new Priority("rush")));
-        orders.add(new Order(new Priority("normal")));
+        orders.add(new Order(Priority.HIGH));
+        orders.add(new Order(Priority.RUSH));
+        orders.add(new Order(Priority.NORMAL));
 
         int highPriorityCount = (int) orders.stream()
-                .map(Order::getPriorityString)
-                .filter(p -> p.equals("high") || p.equals("rush"))
+                .filter(Order::isHigher)
                 .count();
 
         assertThat(highPriorityCount).isEqualTo(2);
