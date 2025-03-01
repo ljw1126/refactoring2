@@ -5,24 +5,28 @@ import java.util.List;
 
 public class Person {
     private final String name;
-    private List<Course> courses;
+    private final List<Course> courses;
 
     public Person(String name, List<Course> courses) {
         this.name = name;
-        this.courses = courses;
+        this.courses = new ArrayList<>(courses);
     }
 
-    public String getName() {
-        return name;
+    public void addCourse(Course aCourse) {
+        this.courses.add(aCourse);
     }
 
-    public List<Course> getCourses() {
-        return courses;
+    public boolean removeCourse(Course aCourse) {
+        return this.courses.remove(aCourse);
     }
 
     public int numAdvancedCourses() {
         return (int) this.courses.stream()
                 .filter(Course::isAdvanced)
                 .count();
+    }
+
+    public String getName() {
+        return name;
     }
 }
