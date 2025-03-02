@@ -1,9 +1,8 @@
 package com.example.refactoring2.ch07.ex1;
 
-import org.springframework.util.Assert;
-
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 public class Customer {
     private final String id;
@@ -25,14 +24,17 @@ public class Customer {
     }
 
     public int usages(String year, String month) {
-        return usages.get(year).getAmount(month);
+        MonthlyUsage monthlyUsage = getMonthlyUsage(year);
+        return monthlyUsage.getAmount(month);
     }
 
     public void setUsage(String year, String month, int amount) {
-        MonthlyUsage monthlyUsage = this.usages.get(year);
-
-        Assert.notNull(monthlyUsage, "MonthlyUsage is null");
-
+        MonthlyUsage monthlyUsage = getMonthlyUsage(year);
         monthlyUsage.setUsage(month, amount);
+    }
+
+    private MonthlyUsage getMonthlyUsage(String year) {
+        return  Optional.ofNullable(this.usages.get(year))
+                .orElseThrow(() -> new IllegalArgumentException("MonthlyUsage not found:" + year));
     }
 }

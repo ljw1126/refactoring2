@@ -1,9 +1,8 @@
 package com.example.refactoring2.ch07.ex1;
 
-import org.springframework.util.Assert;
-
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 public class CustomerData {
     private Map<String, Customer> data;
@@ -17,8 +16,8 @@ public class CustomerData {
     }
 
     public int usage(String customerId, String year, String month) {
-        Map<String, Customer> copied = rawData();
-        Customer customer = copied.get(customerId);
+        CustomerData copied = rawData();
+        Customer customer = copied.getCustomer(customerId);
         return customer.usages(year, month);
     }
 
@@ -31,24 +30,26 @@ public class CustomerData {
      * @return 사용량 차이 결과를 담은 UsageResult 객체
      */
     public Result compareUsage(String customerId, String laterYear, String month) {
-        Map<String, Customer> copied = rawData();
+        CustomerData copied = rawData();
+        Customer customer = copied.getCustomer(customerId);
 
-        Customer customer = copied.get(customerId);
         int later = customer.usages(laterYear, month);
         int earlier = customer.usages(String.valueOf(Integer.parseInt(laterYear) - 1), month);
 
         return new Result(later, later - earlier);
     }
 
-    private Map<String, Customer> rawData() {
-        return new CustomerData(this.data).data;
+    public void setUsage(String customerId, String year, String month, int amount) {
+        Customer customer = getCustomer(customerId);
+        customer.setUsage(year, month, amount);
     }
 
-    public void setUsage(String customerId, String year, String month, int amount) {
-        Customer customer = this.data.get(customerId);
+    public CustomerData rawData() {
+        return new CustomerData(this.data);
+    }
 
-        Assert.notNull(customer, "Customer is Null");
-
-        customer.setUsage(year, month, amount);
+    private Customer getCustomer(String customerId) {
+        return Optional.ofNullable(this.data.get(customerId))
+                .orElseThrow(() -> new IllegalArgumentException("Customer not found:" + customerId));
     }
 }
