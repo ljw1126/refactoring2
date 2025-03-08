@@ -14,7 +14,8 @@ class GpsTrackSummaryTest {
                 new Waypoint(34.0522, -118.2437, 4000)  // 로스앤젤레스 (끝)
         );
 
-        TrackSummary actual = GpsTrackSummary.trackSummary(points);
+        GpsTrackSummary gpsTrackSummary = new GpsTrackSummary(points);
+        TrackSummary actual = gpsTrackSummary.trackSummary();
 
         assertThat(actual.getTotalDistance()).isEqualTo(3000.0, offset(0.1));
         assertThat(actual.getTotalTime()).isEqualTo(559.12, offset(0.1));
