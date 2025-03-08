@@ -29,7 +29,6 @@ public class TelephoneNumber {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         TelephoneNumber that = (TelephoneNumber) o;
         return Objects.equals(areaCode, that.areaCode) && Objects.equals(number, that.number);
