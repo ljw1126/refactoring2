@@ -11,13 +11,17 @@ public class YoungestTotalSalary {
   }
 
   public String getYoungestTotalSalary() {
-    int youngest = peoples.isEmpty() ? Integer.MAX_VALUE : peoples.get(0).getAge();
-    long totalSalary = 0;
-    for (Person person : peoples) {
-      if (person.getAge() < youngest) youngest = person.getAge();
-      totalSalary += person.getSalary();
-    }
+    return String.format("최연소: %s, 총 급여: %s", youngest(), totalSalary());
+  }
 
-    return String.format("최연소: %s, 총 급여: %s", youngest, totalSalary);
+  private int youngest() {
+    return peoples.stream()
+        .mapToInt(Person::getAge)
+        .min()
+        .orElseThrow(() -> new IllegalArgumentException("No people available"));
+  }
+
+  private long totalSalary() {
+    return peoples.stream().mapToInt(Person::getSalary).sum();
   }
 }
