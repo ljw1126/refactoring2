@@ -1,29 +1,22 @@
 package com.example.refactoring2.ch08.ex2;
 
-import java.time.LocalDateTime;
-
 public class Customer {
   private final String name;
-  private double discountRate;
   private final CustomerContract customerContract;
-
-  public Customer(String name, double discountRate) {
-    this(name, discountRate, new CustomerContract(LocalDateTime.now()));
-  }
 
   public Customer(String name, double discountRate, CustomerContract customerContract) {
     this.name = name;
-    this.discountRate = discountRate;
     this.customerContract = customerContract;
+    this.setDiscountRate(discountRate); // 후처리
   }
 
   public void becomePreferred() {
-    this.discountRate += 0.03;
+    this.setDiscountRate(getDiscountRate() + 0.03);
     // do something
   }
 
   public Amount applyDiscount(Amount amount) {
-    return amount.subtract(amount.multiply(discountRate));
+    return amount.subtract(amount.multiply(getDiscountRate()));
   }
 
   public String getName() {
@@ -31,6 +24,10 @@ public class Customer {
   }
 
   public double getDiscountRate() {
-    return discountRate;
+    return customerContract.getDiscountRate();
+  }
+
+  public void setDiscountRate(double aNumber) {
+    this.customerContract.setDiscountRate(aNumber);
   }
 }
