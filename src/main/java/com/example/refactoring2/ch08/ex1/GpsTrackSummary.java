@@ -12,8 +12,9 @@ public class GpsTrackSummary {
 
   public TrackSummary trackSummary() {
     double totalTime = calculateTime();
-    double pace = totalTime / 60 / totalDistance();
-    return new TrackSummary(totalTime, totalDistance(), pace);
+    double totalDistance = totalDistance();
+    double pace = (totalDistance == 0) ? 0 : (totalTime / 60 / totalDistance);
+    return new TrackSummary(totalTime, totalDistance, pace);
   }
 
   private double totalDistance() {
