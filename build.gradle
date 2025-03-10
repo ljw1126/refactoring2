@@ -48,7 +48,7 @@ sonar {
     properties {
         property("sonar.organization", "leejinwoo1126")
         property("sonar.host.url", "https://sonarcloud.io")
-        property("sonar.projectKey", "com.example:refactoring2")
+        property("sonar.projectKey", "ljw1126_refactoring2")
         property("sonar.projectName", "refactoring2")
         property("sonar.sources", "src/main/java")
         property("sonar.tests", "src/test/java")
