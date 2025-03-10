@@ -20,7 +20,7 @@ public class BillingService {
     int baseCharge = pricingPlan.getBase();
     int chargePerUnit = pricingPlan.getUnitCharge();
     int units = order.getUnits();
-    double charge = baseCharge + units * chargePerUnit;
+    double charge = (double) baseCharge + (double) (units * chargePerUnit);
 
     // 할인 금액을 계산한다
     int discountableUnits = Math.max(units - pricingPlan.getDiscountThreshold(), 0);
