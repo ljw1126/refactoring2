@@ -10,7 +10,8 @@ public class HtmlTemplate {
       throws IOException {
     outputStreamWriter.write("<p>" + person.name() + "</p>\n");
     renderPhoto(outputStreamWriter, person.photo());
-    emitPhotoData(outputStreamWriter, person.photo());
+    emmitPhotoData(outputStreamWriter, person.photo());
+    outputStreamWriter.write("<p>위치: " + person.photo().location() + "</p>\n");
     return outputStreamWriter.toString();
   }
 
@@ -24,15 +25,15 @@ public class HtmlTemplate {
     for (Photo photo : photos) {
       // 조건식
       outputStreamWriter.write("<div>\n");
-      emitPhotoData(outputStreamWriter, photo);
+      emmitPhotoData(outputStreamWriter, photo);
+      outputStreamWriter.write("<p>위치: " + photo.location() + "</p>\n");
       outputStreamWriter.write("</div>\n");
     }
   }
 
-  private static void emitPhotoData(OutputStreamWriter outputStreamWriter, Photo aPhoto)
+  private static void emmitPhotoData(OutputStreamWriter outputStreamWriter, Photo aPhoto)
       throws IOException {
     outputStreamWriter.write("<p>제목: " + aPhoto.title() + "</p>\n");
-    outputStreamWriter.write("<p>위치: " + aPhoto.location() + "</p>\n");
     outputStreamWriter.write("<p>날짜: " + aPhoto.date().toString() + "</p>\n");
   }
 }
