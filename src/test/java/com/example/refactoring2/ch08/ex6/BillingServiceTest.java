@@ -10,7 +10,7 @@ class BillingServiceTest {
   void processOrderTest() {
     PricingPlan pricingPlan = new PricingPlan(100, 10, 5, 0.1);
     Order order = new Order(10, false);
-    BillingService billingService = new BillingService(() -> pricingPlan, (orderId) -> order);
+    BillingService billingService = new BillingService(() -> pricingPlan, (o) -> order);
 
     double actual = billingService.processOrder(9999L);
 

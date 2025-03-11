@@ -8,6 +8,14 @@ import org.junit.jupiter.api.Test;
 class CustomerTest {
 
   @Test
+  void init() {
+    LocalDateTime now = LocalDateTime.now();
+    Customer customer = new Customer("tester", 0.10, new CustomerContract(now));
+
+    assertThat(customer).isEqualTo(new Customer("tester", 0.10, new CustomerContract(now)));
+  }
+
+  @Test
   void applyDiscountTest() {
     LocalDateTime now = LocalDateTime.now();
     Customer customer = new Customer("tester", 0.10, new CustomerContract(now));

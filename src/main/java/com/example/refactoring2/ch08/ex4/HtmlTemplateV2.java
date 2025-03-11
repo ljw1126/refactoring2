@@ -2,16 +2,17 @@ package com.example.refactoring2.ch08.ex4;
 
 import java.io.IOException;
 import java.io.OutputStreamWriter;
-import java.util.List;
 
 public class HtmlTemplateV2 {
+  private HtmlTemplateV2() {}
 
   public static String renderPerson(OutputStreamWriter outputStreamWriter, Person person)
       throws IOException {
     outputStreamWriter.write("<p>" + person.name() + "</p>\n");
+    writeParagraph(outputStreamWriter, person.name());
     renderPhoto(outputStreamWriter, person.photo());
     emmitPhotoData(outputStreamWriter, person.photo());
-    outputStreamWriter.write("<p>위치: " + person.photo().location() + "</p>\n");
+    writeParagraph(outputStreamWriter, "위치: " + person.photo().location());
     return outputStreamWriter.toString();
   }
 
@@ -20,20 +21,14 @@ public class HtmlTemplateV2 {
     outputStreamWriter.write(photo.title() + "\n");
   }
 
-  private static void listRecentPhotos(OutputStreamWriter outputStreamWriter, List<Photo> photos)
-      throws IOException {
-    for (Photo photo : photos) {
-      // 조건식
-      outputStreamWriter.write("<div>\n");
-      emmitPhotoData(outputStreamWriter, photo);
-      outputStreamWriter.write("<p>위치: " + photo.location() + "</p>\n");
-      outputStreamWriter.write("</div>\n");
-    }
-  }
-
   private static void emmitPhotoData(OutputStreamWriter outputStreamWriter, Photo aPhoto)
       throws IOException {
-    outputStreamWriter.write("<p>제목: " + aPhoto.title() + "</p>\n");
-    outputStreamWriter.write("<p>날짜: " + aPhoto.date().toString() + "</p>\n");
+    writeParagraph(outputStreamWriter, "제목: " + aPhoto.title());
+    writeParagraph(outputStreamWriter, "날짜: " + aPhoto.date().toString());
+  }
+
+  private static void writeParagraph(OutputStreamWriter outputStreamWriter, String content)
+      throws IOException {
+    outputStreamWriter.write("<p>" + content + "</p>\n");
   }
 }

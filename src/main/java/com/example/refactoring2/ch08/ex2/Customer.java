@@ -1,5 +1,7 @@
 package com.example.refactoring2.ch08.ex2;
 
+import java.util.Objects;
+
 public class Customer {
   private final String name;
   private final CustomerContract customerContract;
@@ -29,5 +31,18 @@ public class Customer {
 
   public void setDiscountRate(double aNumber) {
     this.customerContract.setDiscountRate(aNumber);
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (o == null || getClass() != o.getClass()) return false;
+    Customer customer = (Customer) o;
+    return Objects.equals(name, customer.name)
+        && Objects.equals(customerContract, customer.customerContract);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(name, customerContract);
   }
 }

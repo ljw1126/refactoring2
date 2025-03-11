@@ -1,11 +1,11 @@
 package com.example.refactoring2.ch08.ex3;
 
-import java.io.OutputStream;
 import java.util.StringJoiner;
 
 public class HtmlTemplate {
+  private HtmlTemplate() {}
 
-  public static String renderPerson(OutputStream outputStream, Person person) {
+  public static String renderPerson(Person person) {
     StringJoiner result = new StringJoiner("\n");
     result.add("<p>" + person.name() + "</p>");
     result.add(renderPhoto(person.photo()));

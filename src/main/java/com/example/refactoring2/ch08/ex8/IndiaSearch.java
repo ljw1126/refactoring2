@@ -11,8 +11,8 @@ public class IndiaSearch {
         .skip(1)
         .filter(line -> !line.trim().isEmpty())
         .map(line -> line.split(","))
-        .filter(record -> record[1].trim().equals("India"))
-        .map(record -> new SearchResult(record[0].trim(), record[2].trim()))
+        .filter(arr -> arr[1].trim().equals("India"))
+        .map(arr -> new SearchResult(arr[0].trim(), arr[2].trim()))
         .toList();
   }
 }
