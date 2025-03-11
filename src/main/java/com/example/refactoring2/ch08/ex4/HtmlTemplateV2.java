@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.util.List;
 
-public class HtmlTemplate {
+public class HtmlTemplateV2 {
 
   public static String renderPerson(OutputStreamWriter outputStreamWriter, Person person)
       throws IOException {
@@ -17,7 +17,7 @@ public class HtmlTemplate {
 
   private static void renderPhoto(OutputStreamWriter outputStreamWriter, Photo photo)
       throws IOException {
-    outputStreamWriter.write("doSomething\n");
+    outputStreamWriter.write(photo.title() + "\n");
   }
 
   private static void listRecentPhotos(OutputStreamWriter outputStreamWriter, List<Photo> photos)
