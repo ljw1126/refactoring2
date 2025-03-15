@@ -6,9 +6,9 @@ public class Order {
   private final int number;
   private final Customer customer;
 
-  public Order(int number, Customer customer) {
+  public Order(int number, int customerId, RepositoryData repository) {
     this.number = number;
-    this.customer = customer;
+    this.customer = repository.registerCustomer(customerId); // 참조를 가져옴
   }
 
   public Customer getCustomer() {
