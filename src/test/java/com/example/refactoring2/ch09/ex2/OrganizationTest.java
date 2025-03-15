@@ -13,7 +13,7 @@ class OrganizationTest {
     Organization organization = new Organization(givenName, givenCountry);
 
     Assertions.assertThat(organization)
-        .extracting(Organization::getName, Organization::getCountry)
+        .extracting(Organization::getTitle, Organization::getCountry)
         .containsExactly(givenName, givenCountry);
   }
 }

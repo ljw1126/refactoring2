@@ -1,24 +1,24 @@
 package com.example.refactoring2.ch09.ex2;
 
 public class Organization {
-  private String name;
+  private String title;
   private String country;
 
-  public Organization(String name, String country) {
-    this.name = name;
+  public Organization(String title, String country) {
+    this.title = title;
     this.country = country;
   }
 
-  public String getName() {
-    return name;
+  public String getTitle() {
+    return title;
   }
 
   public String getCountry() {
     return country;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setTitle(String title) {
+    this.title = title;
   }
 
   public void setCountry(String country) {
