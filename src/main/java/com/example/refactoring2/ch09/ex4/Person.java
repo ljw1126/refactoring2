@@ -14,7 +14,7 @@ public class Person {
   }
 
   public void officeAreaCode(String arg) {
-    this.telephoneNumber.setNumber(arg);
+    this.telephoneNumber = new TelephoneNumber(arg, this.officeNumber());
   }
 
   public String officeNumber() {
@@ -22,7 +22,7 @@ public class Person {
   }
 
   public void officeNumber(String arg) {
-    this.telephoneNumber.setNumber(arg);
+    this.telephoneNumber = new TelephoneNumber(this.officeAreaCode(), arg);
   }
 
   @Override

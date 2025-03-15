@@ -13,4 +13,24 @@ class PersonTest {
 
     assertThat(person).isEqualTo(new Person(telephoneNumber));
   }
+
+  @Test
+  void updateOfficeAreaCodeTest() {
+    TelephoneNumber telephoneNumber = new TelephoneNumber("A01", "123-456-7890");
+    Person person = new Person(telephoneNumber);
+
+    person.officeAreaCode("B01");
+
+    assertThat(person).isEqualTo(new Person(new TelephoneNumber("B01", "123-456-7890")));
+  }
+
+  @Test
+  void updateOfficeNumberTest() {
+    TelephoneNumber telephoneNumber = new TelephoneNumber("A01", "123-456-7890");
+    Person person = new Person(telephoneNumber);
+
+    person.officeNumber("999-999-9999");
+
+    assertThat(person).isEqualTo(new Person(new TelephoneNumber("A01", "999-999-9999")));
+  }
 }
