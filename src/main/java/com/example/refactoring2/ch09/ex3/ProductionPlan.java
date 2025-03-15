@@ -14,12 +14,11 @@ public class ProductionPlan {
   }
 
   public int getProduction() {
-    return production;
+    return this.adjustments.stream().mapToInt(Adjustment::amount).sum();
   }
 
   public void applyAdjustment(Adjustment adjustment) {
     this.adjustments.add(adjustment);
-    this.production += adjustment.amount();
   }
 
   @Override
