@@ -22,7 +22,7 @@ class HaggisUtilsTest {
 
     double result = HaggisUtils.distanceTravelled(scenario, 0);
 
-    assertThat(result).isEqualTo(0);
+    assertThat(result).isZero();
   }
 
   @Test

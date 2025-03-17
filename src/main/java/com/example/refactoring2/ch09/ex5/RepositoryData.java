@@ -15,11 +15,7 @@ public class RepositoryData {
   }
 
   public Customer registerCustomer(Integer id) {
-    if (!customers.containsKey(id)) {
-      customers.put(id, new Customer(id));
-    }
-
-    return findCustomer(id);
+    return customers.computeIfAbsent(id, Customer::new);
   }
 
   public Customer findCustomer(Integer id) {
