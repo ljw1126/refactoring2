@@ -2,6 +2,7 @@ package com.example.refactoring2.ch10.ex7;
 
 import static org.assertj.core.api.Assertions.*;
 
+import java.util.Set;
 import java.util.stream.Stream;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -18,23 +19,8 @@ public class Example7 {
   }
 
   private static boolean existMiscreant(String[] people) {
-    boolean found = false;
-
-    for (String p : people) {
-      if (!found) {
-        if (p.equals("조커")) {
-          // do something
-          found = true;
-        }
-
-        if (p.equals("사루만")) {
-          // do something
-          found = true;
-        }
-      }
-    }
-
-    return found;
+    Set<String> miscreant = Set.of("조커", "사루만");
+    return Stream.of(people).anyMatch(miscreant::contains);
   }
 
   private static Stream<Arguments> peopleArguments() {
