@@ -6,19 +6,18 @@ public class EmployeeUtils {
 
   // 장애 수당
   public static int disabilityAmount(Employee anEmployee) {
-    if (anEmployee.seniority() < 2) return 0;
-    if (anEmployee.monthsDisabled() > 12) return 0;
-    if (anEmployee.partTime()) return 0;
+    return isNotEligibleForDisability(anEmployee) ? 0 : 10_000;
+  }
 
-    return 10_000;
+  private static boolean isNotEligibleForDisability(Employee anEmployee) {
+    return anEmployee.seniority() < 2 || anEmployee.monthsDisabled() > 12 || anEmployee.partTime();
   }
 
   public static double vacationAmount(Employee anEmployee) {
-    if (anEmployee.onVacation()) {
-      if (anEmployee.seniority() > 10) {
-        return 1;
-      }
-    }
-    return 0.5;
+    return isEligibleForVacationAmount(anEmployee) ? 1 : 0.5;
+  }
+
+  private static boolean isEligibleForVacationAmount(Employee anEmployee) {
+    return anEmployee.onVacation() && anEmployee.seniority() > 10;
   }
 }
