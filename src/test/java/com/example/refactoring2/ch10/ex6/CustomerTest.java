@@ -23,4 +23,9 @@ class CustomerTest {
 
     assertThat(actual).isEqualTo(9.0);
   }
+
+  @Test
+  void throwExceptionWhenDiscountRateIsNegative() {
+    assertThatThrownBy(() -> new Customer(-0.1)).isInstanceOf(IllegalArgumentException.class);
+  }
 }
