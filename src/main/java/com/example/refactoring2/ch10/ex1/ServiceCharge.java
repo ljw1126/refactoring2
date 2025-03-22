@@ -10,10 +10,18 @@ public class ServiceCharge {
   }
 
   public double charge(int quantity, LocalDate aDate) {
-    if (!aDate.isBefore(plan.summerStart()) && !aDate.isAfter(plan.summerEnd())) {
-      return quantity * plan.summerRate();
-    }
+    return summer(aDate) ? summerCharge(quantity) : regularCharge(quantity);
+  }
 
+  private boolean summer(LocalDate aDate) {
+    return !aDate.isBefore(plan.summerStart()) && !aDate.isAfter(plan.summerEnd());
+  }
+
+  private double summerCharge(int quantity) {
+    return quantity * plan.summerRate();
+  }
+
+  private double regularCharge(int quantity) {
     return quantity * plan.regularRate() + plan.regularServiceCharge();
   }
 }
