@@ -35,18 +35,18 @@ public class Rating {
     if (voyage.zone().equals("중국")) result += 1;
     if (voyage.zone().equals("동인도")) result += 1;
 
-    result += voyageAndHistoryLengthFactor();
+    result += this.historyLengthFactor();
+    result += this.voyageLengthFactor();
 
     return result;
   }
 
-  protected int voyageAndHistoryLengthFactor() {
-    int result = 0;
+  protected int voyageLengthFactor() {
+    return voyage.length() > 14 ? -1 : 0;
+  }
 
-    if (history.length() > 0) result += 1;
-    if (voyage.length() > 14) result -= 1;
-
-    return result;
+  protected int historyLengthFactor() {
+    return (history.length()) > 8 ? 1 : 0;
   }
 
   private int voyageRisk() {

@@ -12,13 +12,22 @@ public class ExperienceChinaRating extends Rating {
   }
 
   @Override
-  protected int voyageAndHistoryLengthFactor() {
-    int result = 3;
+  protected int voyageProfitFactor() {
+    return super.voyageProfitFactor() + 3;
+  }
 
-    if (history.length() > 10) result += 1;
+  @Override
+  protected int voyageLengthFactor() {
+    int result = 0;
+
     if (voyage.length() > 12) result += 1;
     if (voyage.length() > 10) result -= 1;
 
     return result;
+  }
+
+  @Override
+  protected int historyLengthFactor() {
+    return (history.length() > 10) ? 1 : 0;
   }
 }
