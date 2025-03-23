@@ -1,11 +1,11 @@
 package com.example.refactoring2.ch10.ex4;
 
 public class Bird {
-  private final String name;
-  private final String type;
-  private final int numberOfCoconuts;
-  private final int voltage;
-  private final boolean isNailed;
+  protected final String name;
+  protected final String type;
+  protected final int numberOfCoconuts;
+  protected final int voltage;
+  protected final boolean isNailed;
 
   public Bird(Bird bird) {
     this(bird.name, bird.type, bird.numberOfCoconuts, bird.voltage, bird.isNailed);
@@ -19,13 +19,17 @@ public class Bird {
     this.isNailed = isNailed;
   }
 
-  public String plumage() {
-    return switch (type) {
-      case "유럽 제비" -> "보통이다";
-      case "아프리카 제비" -> (numberOfCoconuts > 2) ? "지쳤다" : "보통이다";
-      case "노르웨이 파랑 앵무" -> (voltage > 100) ? "그을렸다" : "예쁘다";
-      default -> "알 수 없다";
+  public static Bird createBird(Bird bird) {
+    return switch (bird.type) {
+      case "유럽 제비" -> new EuropeanSwallow(bird);
+      case "아프리카 제비" -> new AfricanSwallow(bird);
+      case "노르웨이 파랑 앵무" -> new NorwegianBlueParrot(bird);
+      default -> new Bird(bird);
     };
+  }
+
+  public String plumage() {
+    return "알 수 없다";
   }
 
   public Integer airSpeedVelocity() {

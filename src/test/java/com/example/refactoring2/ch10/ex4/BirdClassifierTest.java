@@ -12,10 +12,10 @@ class BirdClassifierTest {
   void plumagesTest() {
     List<Bird> birds =
         List.of(
-            create("이름1", "유럽 제비"),
-            create("이름2", "아프리카 제비"),
-            create("이름3", "노르웨이 파랑 앵무"),
-            create("이름4", "unknown"));
+            Bird.createBird(create("이름1", "유럽 제비")),
+            Bird.createBird(create("이름2", "아프리카 제비")),
+            Bird.createBird(create("이름3", "노르웨이 파랑 앵무")),
+            Bird.createBird(create("이름4", "unknown")));
 
     Map<String, String> actual = BirdClassifier.plumages(birds);
 
@@ -30,10 +30,10 @@ class BirdClassifierTest {
   void speedsTest() {
     List<Bird> birds =
         List.of(
-            create("이름1", "유럽 제비"),
-            create("이름2", "아프리카 제비"),
-            create("이름3", "노르웨이 파랑 앵무"),
-            create("이름4", "unknown"));
+            Bird.createBird(create("이름1", "유럽 제비")),
+            Bird.createBird(create("이름2", "아프리카 제비")),
+            Bird.createBird(create("이름3", "노르웨이 파랑 앵무")),
+            Bird.createBird(create("이름4", "unknown")));
 
     Map<String, Integer> actual = BirdClassifier.speeds(birds);
 
