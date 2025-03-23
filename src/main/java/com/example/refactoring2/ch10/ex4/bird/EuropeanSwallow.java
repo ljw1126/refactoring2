@@ -1,4 +1,4 @@
-package com.example.refactoring2.ch10.ex4;
+package com.example.refactoring2.ch10.ex4.bird;
 
 public class EuropeanSwallow extends Bird {
   public EuropeanSwallow(Bird bird) {

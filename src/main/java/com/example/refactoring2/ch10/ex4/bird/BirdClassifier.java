@@ -1,6 +1,4 @@
-package com.example.refactoring2.ch10.ex4;
-
-import static com.example.refactoring2.ch10.ex4.Bird.*;
+package com.example.refactoring2.ch10.ex4.bird;
 
 import java.util.List;
 import java.util.Map;
