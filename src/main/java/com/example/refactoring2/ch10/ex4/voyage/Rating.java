@@ -3,8 +3,8 @@ package com.example.refactoring2.ch10.ex4.voyage;
 import java.util.Set;
 
 public class Rating {
-  private final Voyage voyage;
-  private final History history;
+  protected final Voyage voyage;
+  protected final History history;
 
   public Rating(Voyage voyage, History history) {
     this.voyage = voyage;
@@ -30,19 +30,21 @@ public class Rating {
     return "B";
   }
 
-  private int voyageProfitFactor() {
+  protected int voyageProfitFactor() {
     int result = 2;
     if (voyage.zone().equals("중국")) result += 1;
     if (voyage.zone().equals("동인도")) result += 1;
-    if (voyage.zone().equals("중국") && hasChinaHistory()) {
-      result += 3;
-      if (history.length() > 10) result += 1;
-      if (voyage.length() > 12) result += 1;
-      if (voyage.length() > 10) result -= 1;
-    } else {
-      if (history.length() > 0) result += 1;
-      if (voyage.length() > 14) result -= 1;
-    }
+
+    result += voyageAndHistoryLengthFactor();
+
+    return result;
+  }
+
+  protected int voyageAndHistoryLengthFactor() {
+    int result = 0;
+
+    if (history.length() > 0) result += 1;
+    if (voyage.length() > 14) result -= 1;
 
     return result;
   }
@@ -58,18 +60,12 @@ public class Rating {
     return Math.max(result, 0);
   }
 
-  private int captainHistoryRisk() {
+  protected int captainHistoryRisk() {
     int result = 1;
     if (history.length() < 5) result += 4;
 
     result += (int) history.getZoneProfits().stream().filter(v -> v.profit() < 0).count();
 
-    if (voyage.zone().equals("중국") && hasChinaHistory()) result -= 2;
-
     return Math.max(result, 0);
-  }
-
-  private boolean hasChinaHistory() {
-    return history.getZoneProfits().stream().anyMatch(v -> v.zone().equals("중국"));
   }
 }
