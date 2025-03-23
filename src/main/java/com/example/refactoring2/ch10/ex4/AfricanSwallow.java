@@ -9,4 +9,9 @@ public class AfricanSwallow extends Bird {
   public String plumage() {
     return (numberOfCoconuts > 2) ? "지쳤다" : "보통이다";
   }
+
+  @Override
+  public Integer airSpeedVelocity() {
+    return 40 - 2 * numberOfCoconuts;
+  }
 }

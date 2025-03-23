@@ -15,14 +15,6 @@ public class BirdClassifier {
   }
 
   public static Map<String, Integer> speeds(List<Bird> birds) {
-    return birds.stream().collect(Collectors.toMap(Bird::name, BirdClassifier::airSpeedVelocity));
-  }
-
-  private static String plumage(Bird bird) {
-    return createBird(bird).plumage();
-  }
-
-  private static Integer airSpeedVelocity(Bird bird) {
-    return createBird(bird).airSpeedVelocity();
+    return birds.stream().collect(Collectors.toMap(Bird::name, Bird::airSpeedVelocity));
   }
 }

@@ -33,12 +33,7 @@ public class Bird {
   }
 
   public Integer airSpeedVelocity() {
-    return switch (type) {
-      case "유럽 제비" -> 35;
-      case "아프리카 제비" -> 40 - 2 * numberOfCoconuts;
-      case "노르웨이 파랑 앵무" -> isNailed ? 0 : 10 + voltage / 10;
-      default -> 0;
-    };
+    return 0;
   }
 
   public String name() {
