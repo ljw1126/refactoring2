@@ -11,15 +11,6 @@ public class Rating {
     this.history = history;
   }
 
-  public static Rating create(Voyage voyage, History history) {
-    if (voyage.zone().equals("중국")
-        && history.getZoneProfits().stream().anyMatch(p -> p.zone().equals("중국"))) {
-      return new ExperienceChinaRating(voyage, history);
-    }
-
-    return new Rating(voyage, history);
-  }
-
   public String value() {
     int vpf = voyageProfitFactor();
     int vr = voyageRisk();

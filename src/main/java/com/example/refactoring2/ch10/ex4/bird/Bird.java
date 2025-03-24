@@ -19,15 +19,6 @@ public class Bird {
     this.isNailed = isNailed;
   }
 
-  public static Bird createBird(Bird bird) {
-    return switch (bird.type) {
-      case "유럽 제비" -> new EuropeanSwallow(bird);
-      case "아프리카 제비" -> new AfricanSwallow(bird);
-      case "노르웨이 파랑 앵무" -> new NorwegianBlueParrot(bird);
-      default -> new Bird(bird);
-    };
-  }
-
   public String plumage() {
     return "알 수 없다";
   }
