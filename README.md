@@ -3,6 +3,7 @@
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ljw1126_refactoring2&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=ljw1126_refactoring2)
 [![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=ljw1126_refactoring2&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=ljw1126_refactoring2)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=ljw1126_refactoring2&metric=coverage)](https://sonarcloud.io/summary/new_code?id=ljw1126_refactoring2)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=ljw1126_refactoring2&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=ljw1126_refactoring2)
 
 > 리팩터링 ‘적용 방법’을 아는 것과 ‘제때 적용’할 줄 아는 것은 다르다. 리팩터링을 언제 시작하고 언제 그만할지를 판단하는 일은 리팩터링의 작동 원리를 아는 것 못지않게 중요하다. (Chapter3. 코드에서 나는 악취)
 
@@ -25,7 +26,7 @@
 | 07 | 캡슐화           | [바로가기](docs/ch07.md) |
 | 08 | 기능 이동         | [바로가기](docs/ch08.md) |
 | 09 | 데이터 조직화       | [바로가기](docs/ch09.md) |
-| 10 | 조건부 로직 간소화    | -                    |
+| 10 | 조건부 로직 간소화    | [바로가기](docs/ch10.md) |
 | 11 | API 리팩터링      | -                    |
 | 12 | 상속 다루기        | -                    |
 
