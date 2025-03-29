@@ -10,7 +10,7 @@ class SalaryManTest {
   void tenPercentRaiseTest() {
     SalaryMan salaryMan = new SalaryMan(Salary.wons(1_000_000));
 
-    salaryMan.tenPercentRaise();
+    salaryMan.raise(0.1);
 
     assertThat(salaryMan).isEqualTo(new SalaryMan(Salary.wons(1100000)));
   }
@@ -19,7 +19,7 @@ class SalaryManTest {
   void fivePercentRaiseTest() {
     SalaryMan salaryMan = new SalaryMan(Salary.wons(1_000_000));
 
-    salaryMan.fivePercentRaise();
+    salaryMan.raise(0.05);
 
     assertThat(salaryMan).isEqualTo(new SalaryMan(Salary.wons(1050000)));
   }

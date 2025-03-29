@@ -9,12 +9,8 @@ public class SalaryMan {
     this.salary = salary;
   }
 
-  public void tenPercentRaise() {
-    this.salary = this.salary.multiply(1.1);
-  }
-
-  public void fivePercentRaise() {
-    this.salary = this.salary.multiply(1.05);
+  public void raise(double factor) {
+    this.salary = this.salary.multiply(1 + factor);
   }
 
   @Override
