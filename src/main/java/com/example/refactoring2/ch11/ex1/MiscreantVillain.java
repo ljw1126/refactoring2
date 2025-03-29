@@ -2,21 +2,25 @@ package com.example.refactoring2.ch11.ex1;
 
 public class MiscreantVillain {
 
-  private final AlarmService alarmService;
+  private Alarm alarm;
 
-  public MiscreantVillain(AlarmService alarmService) {
-    this.alarmService = alarmService;
+  public MiscreantVillain(Alarm alarm) {
+    this.alarm = alarm;
   }
 
-  public String alertForMiscreant(String[] people) {
+  public void alertForMiscreant(String[] people) {
+    if (!findMiscreant(people).isBlank()) {
+      alarm.setOffAlarms();
+    }
+  }
+
+  public String findMiscreant(String[] people) {
     for (String p : people) {
       if (p.equals("조커")) {
-        alarmService.setOfAlarms();
         return "조커";
       }
 
       if (p.equals("사루만")) {
-        alarmService.setOfAlarms();
         return "사루만";
       }
     }
