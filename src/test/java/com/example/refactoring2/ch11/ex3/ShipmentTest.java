@@ -1,7 +1,8 @@
 package com.example.refactoring2.ch11.ex3;
 
+import static org.assertj.core.api.Assertions.*;
+
 import java.time.LocalDate;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -20,9 +21,9 @@ class ShipmentTest {
 
     Order order = new Order(deliveryState, LocalDate.parse("2025-04-01"));
 
-    LocalDate actual = shipment.deliveryDate(order, true);
+    shipment.setRushDeliveryDate(order);
 
-    Assertions.assertThat(actual).isEqualTo(LocalDate.parse(deliveryDate));
+    assertThat(shipment).isEqualTo(new Shipment(LocalDate.parse(deliveryDate)));
   }
 
   @ParameterizedTest
@@ -39,8 +40,8 @@ class ShipmentTest {
 
     Order order = new Order(deliveryState, LocalDate.parse("2025-04-01"));
 
-    LocalDate actual = shipment.deliveryDate(order, false);
+    shipment.setRegularDeliveryDate(order);
 
-    Assertions.assertThat(actual).isEqualTo(LocalDate.parse(deliveryDate));
+    assertThat(shipment).isEqualTo(new Shipment(LocalDate.parse(deliveryDate)));
   }
 }
