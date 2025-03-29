@@ -5,7 +5,10 @@ public class Charge {
   public String baseCharge(long usage) {
     if (usage < 0L) return usd(0.0);
 
-    double amount = bottomBand(usage) * 0.03 + middleBand(usage) * 0.05 + topBand(usage) * 0.07;
+    double amount =
+        withinBand(usage, 0, 100) * 0.03
+            + withinBand(usage, 100, 200) * 0.05
+            + withinBand(usage, 200, Long.MAX_VALUE) * 0.07;
 
     return usd(amount);
   }
@@ -14,15 +17,7 @@ public class Charge {
     return value + " USD";
   }
 
-  private long bottomBand(long usage) {
-    return Math.min(usage, 100);
-  }
-
-  private long middleBand(long usage) {
-    return usage > 100 ? Math.min(usage, 200) - 100 : 0;
-  }
-
-  private double topBand(long usage) {
-    return (usage > 200) ? (usage - 200) : 0;
+  private long withinBand(long usage, long bottom, long top) {
+    return usage > bottom ? Math.min(usage, top) - bottom : 0;
   }
 }
