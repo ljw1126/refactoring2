@@ -1,8 +1,8 @@
 package com.example.refactoring2.ch11.ex5;
 
 public class Order {
-    private int quantity;
-    private int itemPrice;
+    private final int quantity;
+    private final int itemPrice;
 
     public Order(int quantity, int itemPrice) {
         this.quantity = quantity;
@@ -11,15 +11,18 @@ public class Order {
 
     public double finalPrice() {
         int basePrice = this.quantity * this.itemPrice;
-        int discountLevel = this.quantity > 100 ? 2 : 1;
-        return this.discountPrice(basePrice, discountLevel);
+        return this.discountPrice(basePrice);
     }
 
-    private double discountPrice(int basePrice, int discountLevel) {
-        return switch (discountLevel) {
+    private int discountLevel() {
+        return (this.quantity > 100) ? 2 : 1;
+    }
+
+    private double discountPrice(int basePrice) {
+        return switch (this.discountLevel()) {
             case 1 -> basePrice * 0.95;
             case 2 -> basePrice * 0.9;
-            default -> throw new IllegalStateException("Unexpected discountLevel: " + discountLevel);
+            default -> throw new IllegalStateException("Unexpected discountLevel: " + this.discountLevel());
         };
     }
 }
