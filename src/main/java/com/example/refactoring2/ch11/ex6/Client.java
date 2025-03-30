@@ -12,9 +12,9 @@ public class Client {
     }
 
     public void controlTemperature() {
-        if (thePlan.targetTemperature() > thermostat.currentTemperature()) {
+        if (thePlan.targetTemperature(thermostat.selectedTemperature()) > thermostat.currentTemperature()) {
             setToHeat();
-        } else if (thePlan.targetTemperature() < thermostat.currentTemperature()) {
+        } else if (thePlan.targetTemperature(thermostat.selectedTemperature()) < thermostat.currentTemperature()) {
             setToCool();
         } else {
             setOff();

@@ -13,7 +13,7 @@ class HeatingPlanTest {
         Thermostat thermostat = new Thermostat(50, 0);
         HeatingPlan heatingPlan = new HeatingPlan(30, 20, thermostat);
 
-        int actual = heatingPlan.targetTemperature();
+        int actual = heatingPlan.targetTemperature(thermostat.selectedTemperature());
 
         assertThat(actual).isEqualTo(30);
     }
@@ -24,7 +24,7 @@ class HeatingPlanTest {
         Thermostat thermostat = new Thermostat(10, 0);
         HeatingPlan heatingPlan = new HeatingPlan(30, 20, thermostat);
 
-        int actual = heatingPlan.targetTemperature();
+        int actual = heatingPlan.targetTemperature(thermostat.selectedTemperature());
 
         assertThat(actual).isEqualTo(20);
     }
@@ -35,7 +35,7 @@ class HeatingPlanTest {
         Thermostat thermostat = new Thermostat(25, 0);
         HeatingPlan heatingPlan = new HeatingPlan(30, 20, thermostat);
 
-        int actual = heatingPlan.targetTemperature();
+        int actual = heatingPlan.targetTemperature(thermostat.selectedTemperature());
 
         assertThat(actual).isEqualTo(25);
     }
