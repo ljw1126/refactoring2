@@ -1,6 +1,5 @@
 package com.example.refactoring2.ch11.ex12;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,29 +11,26 @@ public class CountryRule {
   }
 
   public void topMethod(Order orderData) {
-    Object status = calculateShippingCosts(orderData);
     List<ErrorInfo> errorList = new ArrayList<>();
-    if (!(status instanceof ShippingRules) && (int) status < 0) {
-      errorList.add(new ErrorInfo(orderData, (int) status));
+    try {
+      calculateShippingCosts(orderData);
+    } catch (OrderProcessingException e) {
+      errorList.add(new ErrorInfo(orderData, e.code()));
+    } catch (Exception e) {
+      throw new IllegalStateException(e);
     }
   }
 
-  public Object calculateShippingCosts(Order anOrder) {
+  public void calculateShippingCosts(Order anOrder) {
     // 관련 없는 코드
-
-    Object shippingRules = localShippingRules(anOrder.country());
-    if (!(shippingRules instanceof ShippingRules)) {
-      return shippingRules; // 오류 전파
-    }
-
+    ShippingRules shippingRules = localShippingRules(anOrder.country());
     // 더 관련 없는 코드
-    return BigDecimal.valueOf(0);
   }
 
-  public Object localShippingRules(String country) {
+  public ShippingRules localShippingRules(String country) {
     String data = countryData.shippingRules(country);
 
-    if (data == null) return -23;
+    if (data == null) throw new OrderProcessingException(-23);
 
     return new ShippingRules(data);
   }
