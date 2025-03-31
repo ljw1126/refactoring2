@@ -12,10 +12,12 @@ class ChargeCalculatorTest {
     int usage = 1000;
     Provider provider = new Provider(100);
 
-    ChargeCalculator chargeCalculator = new ChargeCalculator(customer, usage, provider);
-
-    double actual = chargeCalculator.charge();
+    double actual = charge(customer, usage, provider);
 
     assertThat(actual).isEqualTo(200.0);
+  }
+
+  private double charge(Customer customer, int usage, Provider provider) {
+    return new ChargeCalculator().charge(customer, usage, provider);
   }
 }
