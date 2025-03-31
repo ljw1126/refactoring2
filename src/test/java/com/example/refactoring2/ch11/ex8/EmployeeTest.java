@@ -21,4 +21,11 @@ class EmployeeTest {
 
     assertThatThrownBy(employee::type).isInstanceOf(IllegalArgumentException.class);
   }
+
+  @Test
+  void ccreateEngineerTest() {
+    Employee employee = Employee.createEngineer("tester");
+
+    assertThat(employee).isEqualTo(new Employee("tester", "E"));
+  }
 }

@@ -4,6 +4,10 @@ import java.util.Arrays;
 
 public record Employee(String name, String typeCode) {
 
+  public static Employee createEngineer(String name) {
+    return new Employee(name, "E");
+  }
+
   public LegalTypeCode type() {
     return LegalTypeCode.from(typeCode);
   }
