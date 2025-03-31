@@ -1,9 +1,6 @@
 package com.example.refactoring2.ch11.ex11;
 
 public class GpsCalculator {
-  private int totalAscent = 0;
-  private int totalTime = 0;
-  private int totalDistance = 1; // / by zero 때문에 1로 초기화
   private final Point[] points;
 
   public GpsCalculator(Point[] points) {
@@ -11,24 +8,30 @@ public class GpsCalculator {
   }
 
   public double calculate() {
-    calculateAscent();
-    calculateTime();
-    calculateDistance();
+    int totalAscent = calculateAscent();
+    int totalTime = calculateTime();
+    int totalDistance = calculateDistance();
     return (double) totalTime / 60 / totalDistance;
   }
 
-  public void calculateAscent() {
+  public int calculateAscent() {
+    int result = 0;
     for (int i = 1; i < points.length; i++) {
       int verticalChange = points[i].elevation() - points[i - 1].elevation();
-      totalAscent += Math.max(verticalChange, 0);
+      result += Math.max(verticalChange, 0);
     }
+
+    return result;
   }
 
-  public void calculateTime() {
+  public int calculateTime() {
     // ignore: do something
+    return 0;
   }
 
-  public void calculateDistance() {
+  public int calculateDistance() {
     // ignore: do something
+    // / by zero 때문에 1로 초기화
+    return 1;
   }
 }
