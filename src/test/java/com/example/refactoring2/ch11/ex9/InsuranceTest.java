@@ -15,7 +15,7 @@ class InsuranceTest {
     Insurance insurance = new Insurance();
     int actual = insurance.score(candidate, medicalExam, scoringGuide);
 
-    assertThat(actual).isEqualTo(0);
+    assertThat(actual).isZero();
   }
 
   @DisplayName("흡연자인 경우")
