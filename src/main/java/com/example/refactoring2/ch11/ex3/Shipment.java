@@ -21,7 +21,7 @@ public class Shipment {
       deliveryTime = 4;
     }
 
-    return anOrder.placedOn().plusDays(2 + deliveryTime);
+    return anOrder.placedOn().plusDays(2L + deliveryTime);
   }
 
   private LocalDate rushDeliveryDate(Order anOrder) {
@@ -34,7 +34,7 @@ public class Shipment {
       deliveryTime = 3;
     }
 
-    return anOrder.placedOn().plusDays(1 + deliveryTime);
+    return anOrder.placedOn().plusDays(1L + deliveryTime);
   }
 
   public void setRushDeliveryDate(Order order) {
