@@ -16,18 +16,16 @@ public class Score {
   }
 
   public int execute() {
-    {
-      this.result = 0;
-      this.healthLevel = 0;
-      this.highMedicalRiskFlag = false;
+    this.result = 0;
+    this.healthLevel = 0;
+    this.highMedicalRiskFlag = false;
 
-      this.scoreSmoking();
-      this.scoreLowCertification();
+    this.scoreSmoking();
+    this.scoreLowCertification();
 
-      // do something ..
-      this.result -= Math.max(this.healthLevel - 5, 0);
-      return this.result;
-    }
+    // do something ..
+    this.result -= Math.max(this.healthLevel - 5, 0);
+    return this.result;
   }
 
   private void scoreSmoking() {
