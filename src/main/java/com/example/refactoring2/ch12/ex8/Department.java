@@ -4,29 +4,21 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Department {
-  private final String name;
+public class Department extends Party {
   private final List<Integer> staff;
 
   public Department(String name, List<Integer> staff) {
-    this.name = name;
+    super(name);
     this.staff = new ArrayList<>(staff);
   }
 
-  public long totalMonthlyCost() {
+  @Override
+  public long monthlyCost() {
     return this.staff.stream().reduce(0, (sum, cost) -> sum + cost);
   }
 
   public int headCount() {
     return this.staff.size();
-  }
-
-  public long totalAnnualCost() {
-    return this.totalMonthlyCost() * 12;
-  }
-
-  public String getName() {
-    return name;
   }
 
   public List<Integer> getStaff() {
