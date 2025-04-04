@@ -7,10 +7,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 class DepartmentTest {
 
     @Test
-    void getTotalAnnualCostTest() {
+    void annualCostTest() {
         Department department = new Department(1000);
 
-        int actual = department.getTotalAnnualCost();
+        int actual = department.annualCost();
 
         assertThat(actual).isEqualTo(12_000);
     }

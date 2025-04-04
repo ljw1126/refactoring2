@@ -8,7 +8,8 @@ public class Department extends Party {
         this.monthlyCost = monthlyCost;
     }
 
-    public int getTotalAnnualCost() {
+    @Override
+    public int annualCost() {
         return this.monthlyCost * 12;
     }
 }

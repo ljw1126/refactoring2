@@ -7,6 +7,7 @@ public class Employee extends Party {
         this.monthlyCost = monthlyCost;
     }
 
+    @Override
     public int annualCost() {
         return this.monthlyCost * 12;
     }
