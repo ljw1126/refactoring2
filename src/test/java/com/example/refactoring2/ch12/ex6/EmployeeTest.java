@@ -11,14 +11,14 @@ class EmployeeTest {
   @ParameterizedTest
   @CsvSource({"engineer", "manager", "salesperson"})
   void validaTypeTest(String givenType) {
-    Employee employee = new Employee("tester", givenType);
+    Employee employee = Employee.of("tester", givenType);
 
-    assertThat(employee).isEqualTo(new Employee("tester", givenType));
+    assertThat(employee).isEqualTo(Employee.of("tester", givenType));
   }
 
   @Test
   void invalidTypeThrowTest() {
-    assertThatThrownBy(() -> new Employee("tester", "invalid"))
+    assertThatThrownBy(() -> Employee.of("tester", "invalid"))
         .isInstanceOf(IllegalArgumentException.class);
   }
 }
