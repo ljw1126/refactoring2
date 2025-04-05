@@ -3,19 +3,30 @@ package com.example.refactoring2.ch12.ex10.multiSubclass;
 public class Bird {
     protected final String name;
     protected final String plumage;
+    protected SpeciesDelegate speciesDelegate;
 
     public Bird(String name, String plumage) {
         this.name = name;
         this.plumage = plumage;
     }
 
-    public static Bird from(BirdDto birdDto) {
+    public Bird(BirdDto birdDto) {
+        this.name = birdDto.name();
+        this.plumage = birdDto.plumage();
+        this.speciesDelegate = selectSpeciesDelegate(birdDto);
+    }
+
+    private SpeciesDelegate selectSpeciesDelegate(BirdDto birdDto) {
         return switch (birdDto.type()) {
-            case "유럽 제비" -> new EuropeanSwallow(birdDto);
-            case "아프리카 제비" -> new AfricanSwallow(birdDto);
-            case "노르웨이 파랑 앵무" -> new NorwegianBlueParrot(birdDto);
-            default -> throw new IllegalArgumentException(birdDto.type());
+            case "유럽 제비" -> new EuropeanSwallowDelegate(this);
+            case "아프리카 제비" -> new AfricanSwallowDelegate(birdDto, this);
+            case "노르웨이 파랑 앵무" -> new NorwegianBlueParrotDelegate(birdDto, this);
+            default -> new SpeciesDelegate(this);
         };
+    }
+
+    public static Bird from(BirdDto data) {
+        return new Bird(data);
     }
 
     public String name() {
@@ -23,11 +34,11 @@ public class Bird {
     }
 
     public String plumage() {
-        return this.plumage.isBlank() ? "보통이다" : this.plumage;
+        return this.speciesDelegate.plumage();
     }
 
     public Integer airSpeedVelocity() {
-        return null;
+        return this.speciesDelegate.airSpeedVelocity();
     }
 
 }
