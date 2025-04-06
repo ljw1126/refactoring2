@@ -1,4 +1,4 @@
-package com.example.refactoring2.ch12.ex2;
+package com.example.refactoring2.ch12.ex3;
 
 import java.util.Objects;
 
