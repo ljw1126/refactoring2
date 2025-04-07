@@ -12,7 +12,7 @@ public class BookingFactory {
   public static Booking createPremiumBooking(
       Show show, LocalDate date, boolean peakDay, Extras extras) {
     Booking result = new Booking(show, date, peakDay);
-    result.bePremium(extras);
+    result.bePremium(show, peakDay, extras);
     return result;
   }
 }

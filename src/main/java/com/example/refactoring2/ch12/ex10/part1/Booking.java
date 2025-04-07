@@ -15,14 +15,14 @@ public class Booking {
     this.peakDay = peakDay;
   }
 
-  protected void bePremium(Extras extras) {
-    this.premiumDelegate = new PremiumDelegate(this, extras);
+  protected void bePremium(Show show, boolean peakDay, Extras extras) {
+    this.premiumDelegate = new PremiumDelegate(show, peakDay, extras);
   }
 
   public boolean hasTalkback() {
     return (this.premiumDelegate != null)
         ? this.premiumDelegate.hasTalkback()
-        : this.show.isTalkback() && !peakDay;
+        : this.show.talkback() && !peakDay;
   }
 
   public long basePrice() {
