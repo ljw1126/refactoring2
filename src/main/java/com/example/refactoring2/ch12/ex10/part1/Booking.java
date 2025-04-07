@@ -15,17 +15,6 @@ public class Booking {
     this.peakDay = peakDay;
   }
 
-  public static Booking createBooking(Show show, LocalDate date, boolean peakDay) {
-    return new Booking(show, date, peakDay);
-  }
-
-  public static Booking createPremiumBooking(
-      Show show, LocalDate date, boolean peakDay, Extras extras) {
-    Booking result = new Booking(show, date, peakDay);
-    result.bePremium(extras);
-    return result;
-  }
-
   protected void bePremium(Extras extras) {
     this.premiumDelegate = new PremiumDelegate(this, extras);
   }

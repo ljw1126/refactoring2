@@ -11,7 +11,7 @@ class BookingTest {
   void basicBookingTest() {
     Show show = new Show(1000, false);
     LocalDate date = LocalDate.of(2025, 4, 5);
-    Booking booking = Booking.createBooking(show, date, true);
+    Booking booking = BookingFactory.createBooking(show, date, true);
 
     assertThat(booking.basePrice()).isEqualTo(1150L);
     assertThat(booking.hasDinner()).isFalse();
@@ -23,7 +23,7 @@ class BookingTest {
     Show show = new Show(1000, true);
     LocalDate date = LocalDate.of(2025, 4, 5);
     Extras extras = new Extras(500, false);
-    Booking premiumBooking = Booking.createPremiumBooking(show, date, false, extras);
+    Booking premiumBooking = BookingFactory.createPremiumBooking(show, date, false, extras);
 
     assertThat(premiumBooking.basePrice()).isEqualTo(1500L);
     assertThat(premiumBooking.hasDinner()).isFalse();
