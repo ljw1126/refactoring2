@@ -3,14 +3,9 @@ package com.example.refactoring2.ch12.ex10.part2;
 public class Bird {
   protected final String name;
   protected final String plumage;
-  protected SpeciesDelegate speciesDelegate;
+  protected final SpeciesDelegate speciesDelegate;
 
-  public Bird(String name, String plumage) {
-    this.name = name;
-    this.plumage = plumage;
-  }
-
-  public Bird(BirdDto birdDto) {
+  private Bird(BirdDto birdDto) {
     this.name = birdDto.name();
     this.plumage = birdDto.plumage();
     this.speciesDelegate = selectSpeciesDelegate(birdDto);
@@ -18,10 +13,10 @@ public class Bird {
 
   private SpeciesDelegate selectSpeciesDelegate(BirdDto birdDto) {
     return switch (birdDto.type()) {
-      case "유럽 제비" -> new EuropeanSwallowDelegate(this);
-      case "아프리카 제비" -> new AfricanSwallowDelegate(birdDto, this);
-      case "노르웨이 파랑 앵무" -> new NorwegianBlueParrotDelegate(birdDto, this);
-      default -> new SpeciesDelegate(this);
+      case "유럽 제비" -> new EuropeanSwallowDelegate();
+      case "아프리카 제비" -> new AfricanSwallowDelegate(birdDto);
+      case "노르웨이 파랑 앵무" -> new NorwegianBlueParrotDelegate(birdDto);
+      default -> new SpeciesDelegate();
     };
   }
 
@@ -34,7 +29,7 @@ public class Bird {
   }
 
   public String plumage() {
-    return this.speciesDelegate.plumage();
+    return this.speciesDelegate.plumage(this.plumage);
   }
 
   public Integer airSpeedVelocity() {

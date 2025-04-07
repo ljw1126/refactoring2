@@ -36,7 +36,7 @@ class PersonTest {
       {"tester", "X"},
     };
 
-    List<Person> actual = Person.loadFromInput(data);
+    List<Person> actual = PersonFactory.loadFromInput(data);
 
     assertThat(actual)
         .containsExactly(

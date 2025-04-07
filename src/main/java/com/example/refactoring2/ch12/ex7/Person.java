@@ -14,10 +14,6 @@ public class Person {
     this.genderCode = StringUtils.hasLength(genderCode) ? genderCode : "X";
   }
 
-  public static List<Person> loadFromInput(String[][] data) {
-    return Stream.of(data).map(aRecord -> PersonFactory.from(aRecord[0], aRecord[1])).toList();
-  }
-
   public String genderCode() {
     return this.genderCode;
   }

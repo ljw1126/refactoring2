@@ -4,17 +4,16 @@ public class NorwegianBlueParrotDelegate extends SpeciesDelegate {
   private final int voltage;
   private final boolean isNailed;
 
-  public NorwegianBlueParrotDelegate(BirdDto data, Bird bird) {
-    super(bird);
+  public NorwegianBlueParrotDelegate(BirdDto data) {
     this.voltage = data.voltage();
     this.isNailed = data.isNailed();
   }
 
   @Override
-  public String plumage() {
+  public String plumage(String value) {
     if (voltage > 100) return "그을렸다";
 
-    return this.bird.plumage().isBlank() ? "예쁘다" : this.bird.plumage();
+    return value.isBlank() ? "예쁘다" : value;
   }
 
   @Override
