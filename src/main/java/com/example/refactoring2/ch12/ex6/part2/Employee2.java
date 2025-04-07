@@ -7,21 +7,12 @@ public class Employee2 {
   private final EmployeeType employeeType;
 
   public Employee2(String name, String type) {
-    this(name, createEmployeeType(type));
+    this(name, Employee2Factory.createEmployeeType(type));
   }
 
   public Employee2(String name, EmployeeType employeeType) {
     this.name = name;
     this.employeeType = employeeType;
-  }
-
-  public static EmployeeType createEmployeeType(String type) {
-    return switch (type) {
-      case "engineer" -> new Engineer();
-      case "manager" -> new Manager();
-      case "salesperson" -> new Salesperson();
-      default -> throw new IllegalArgumentException("Invalid type " + type);
-    };
   }
 
   public String capitalizedType() {

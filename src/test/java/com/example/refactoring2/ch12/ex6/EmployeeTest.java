@@ -1,5 +1,6 @@
 package com.example.refactoring2.ch12.ex6;
 
+import static com.example.refactoring2.ch12.ex6.EmployeeFactory.*;
 import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
@@ -11,14 +12,13 @@ class EmployeeTest {
   @ParameterizedTest
   @CsvSource({"engineer", "manager", "salesperson"})
   void validaTypeTest(String givenType) {
-    Employee employee = Employee.of("tester", givenType);
+    Employee employee = of("tester", givenType);
 
-    assertThat(employee).isEqualTo(Employee.of("tester", givenType));
+    assertThat(employee).isEqualTo(of("tester", givenType));
   }
 
   @Test
   void invalidTypeThrowTest() {
-    assertThatThrownBy(() -> Employee.of("tester", "invalid"))
-        .isInstanceOf(IllegalArgumentException.class);
+    assertThatThrownBy(() -> of("tester", "invalid")).isInstanceOf(IllegalArgumentException.class);
   }
 }
