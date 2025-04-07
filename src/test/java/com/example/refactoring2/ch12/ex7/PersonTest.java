@@ -9,21 +9,21 @@ class PersonTest {
 
   @Test
   void createMaleTest() {
-    Person person = Person.from("tester", "M");
+    Person person = PersonFactory.from("tester", "M");
 
     assertThat(person).isEqualTo(new Male("tester", "M"));
   }
 
   @Test
   void createFemaleTest() {
-    Person person = Person.from("tester", "F");
+    Person person = PersonFactory.from("tester", "F");
 
     assertThat(person).isEqualTo(new Female("tester", "F"));
   }
 
   @Test
   void createPersonTest() {
-    Person person = Person.from("tester", "X");
+    Person person = PersonFactory.from("tester", "X");
 
     assertThat(person).isEqualTo(new Person("tester", "X"));
   }
@@ -45,7 +45,7 @@ class PersonTest {
 
   @Test
   void isMaleTest() {
-    Person person = Person.from("tester", "M");
+    Person person = PersonFactory.from("tester", "M");
 
     assertThat(person.isMale()).isTrue();
   }

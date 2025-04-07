@@ -14,16 +14,8 @@ public class Person {
     this.genderCode = StringUtils.hasLength(genderCode) ? genderCode : "X";
   }
 
-  public static Person from(String name, String gender) {
-    return switch (gender) {
-      case "M" -> new Male(name, "M");
-      case "F" -> new Female(name, "F");
-      default -> new Person(name, "X");
-    };
-  }
-
   public static List<Person> loadFromInput(String[][] data) {
-    return Stream.of(data).map(aRecord -> from(aRecord[0], aRecord[1])).toList();
+    return Stream.of(data).map(aRecord -> PersonFactory.from(aRecord[0], aRecord[1])).toList();
   }
 
   public String genderCode() {
