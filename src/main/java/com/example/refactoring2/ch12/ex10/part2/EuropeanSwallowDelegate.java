@@ -1,13 +1,13 @@
-package com.example.refactoring2.ch12.ex10.multiSubclass;
+package com.example.refactoring2.ch12.ex10.part2;
 
 public class EuropeanSwallowDelegate extends SpeciesDelegate {
 
-    public EuropeanSwallowDelegate(Bird bird) {
-        super(bird);
-    }
+  public EuropeanSwallowDelegate(Bird bird) {
+    super(bird);
+  }
 
-    @Override
-    public Integer airSpeedVelocity() {
-        return 35;
-    }
+  @Override
+  public Integer airSpeedVelocity() {
+    return 35;
+  }
 }

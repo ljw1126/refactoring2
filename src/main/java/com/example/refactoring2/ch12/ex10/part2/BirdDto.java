@@ -1,4 +1,9 @@
-package com.example.refactoring2.ch12.ex10.multiSubclass;
+package com.example.refactoring2.ch12.ex10.part2;
 
-public record BirdDto(String type, String name, String plumage, int numberOfCoconuts, int voltage, boolean isNailed) {
-}
+public record BirdDto(
+    String type,
+    String name,
+    String plumage,
+    int numberOfCoconuts,
+    int voltage,
+    boolean isNailed) {}
