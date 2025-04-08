@@ -15,6 +15,8 @@
 - 정적 코드 분석 : SonarCloud 
 
 ### 목차
+> 🗓️2025.01.23 ~ 2025.04.10 (12주)
+
 | Chapter | Title         | 정리                   | 
 |---------|---------------|----------------------|
 | 01 | 리팩터링: 첫 번째 예시 | [바로가기](docs/ch01.md) |
@@ -28,7 +30,7 @@
 | 09 | 데이터 조직화       | [바로가기](docs/ch09.md) |
 | 10 | 조건부 로직 간소화    | [바로가기](docs/ch10.md) |
 | 11 | API 리팩터링      | [바로가기](docs/ch11.md) |
-| 12 | 상속 다루기        | -                    |
+| 12 | 상속 다루기        | [바로가기](docs/ch12.md) |
 
 ### Reference
 - [Catalog of Refactorings](https://refactoring.com/catalog/)
