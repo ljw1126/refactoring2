@@ -3,9 +3,9 @@ package com.example.refactoring2.ch12.ex10.part1;
 import java.time.LocalDate;
 
 public class Booking {
-  protected final Show show;
-  protected final LocalDate date;
-  protected final boolean peakDay;
+  private final Show show;
+  private final LocalDate date;
+  private final boolean peakDay;
 
   protected PremiumDelegate premiumDelegate;
 

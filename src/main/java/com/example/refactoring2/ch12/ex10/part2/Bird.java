@@ -1,9 +1,9 @@
 package com.example.refactoring2.ch12.ex10.part2;
 
 public class Bird {
-  protected final String name;
-  protected final String plumage;
-  protected final SpeciesDelegate speciesDelegate;
+  private final String name;
+  private final String plumage;
+  private final SpeciesDelegate speciesDelegate;
 
   private Bird(BirdDto birdDto) {
     this.name = birdDto.name();
